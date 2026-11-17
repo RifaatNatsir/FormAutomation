@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PLN Mobile - 48 Ulasan Anonim dan Parafrase</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      font-family: 'Google Sans', Roboto, Arial, sans-serif;
+      gap: 2px;
+    }
+
+    .review-card {
+      background: #ffffff;
+      padding: 16px 16px 20px 16px;
+      width: 500px;
+      border-bottom: 1px solid #dadce0;
+    }
+
+    .review-card:last-child {
+      border-bottom: none;
+    }
+
+    .header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .left {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      font-weight: 500;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .name {
+      color: #202124;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    .meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 2px;
+    }
+
+    .stars {
+      color: #fbbc04;
+      font-size: 15px;
+      letter-spacing: 1px;
+    }
+
+    .date {
+      color: #5f6368;
+      font-size: 12px;
+    }
+
+    .dots {
+      color: #5f6368;
+      font-size: 20px;
+      cursor: pointer;
+      padding: 0 4px;
+    }
+
+    .review-text {
+      color: #3c4043;
+      font-size: 14px;
+      line-height: 1.6;
+      margin-top: 10px;
+      padding-left: 52px;
+    }
+
+    .source-note {
+      width: min(500px, 100%);
+      padding: 16px;
+      background: #f1f3f4;
+      color: #3c4043;
+      font-size: 12px;
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+
+    .review-card {
+      max-width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="review-card">
+    <div class="header">
+      <div class="left">
+        <div class="avatar" style="background:#1a73e8;">K</div>
+        <div>
+          <div class="name">kopi_sore</div>
+          <div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div>
+        </div>
+      </div>
+      <div class="dots">⋮</div>
+    </div>
+    <div class="review-text">Lagi di luar kota, orang rumah bilang meterannya sudah bunyi. Untung token bisa dibeli dari
+      HP dan cepat masuk. Lumayan menolong kalau lagi kepepet begini.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="header">
+      <div class="left">
+        <div class="avatar" style="background:#ad1457;">R</div>
+        <div>
+          <div class="name">rumahpojok</div>
+          <div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div>
+        </div>
+      </div>
+      <div class="dots">⋮</div>
+    </div>
+    <div class="review-text">Sekarang lebih gampang membandingkan tagihan beberapa bulan. Baru kelihatan kalau pemakaian
+      water heater dan mesin cuci lumayan bikin boros. Jadi tahu bagian mana yang perlu dikurangi.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="header">
+      <div class="left">
+        <div class="avatar" style="background:#2e7d32;">L</div>
+        <div>
+          <div class="name">langit.agak.mendung</div>
+          <div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div>
+        </div>
+      </div>
+      <div class="dots">⋮</div>
+    </div>
+    <div class="review-text">Trafo dekat rumah sempat bermasalah malam-malam sampai listrik mati. Lapor lewat aplikasi,
+      belum satu jam petugas sudah datang memeriksa. Terima kasih sudah cepat merespons.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="header">
+      <div class="left">
+        <div class="avatar" style="background:#7b1fa2;">P</div>
+        <div>
+          <div class="name">pengguna_027</div>
+          <div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div>
+        </div>
+      </div>
+      <div class="dots">⋮</div>
+    </div>
+    <div class="review-text">Ngurus sambungan baru untuk rumah setelah menikah ternyata cukup lewat HP. Foto KTP dan
+      berkas rumah tinggal diunggah. Tidak perlu ambil cuti buat antre ke kantor.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="header">
+      <div class="left">
+        <div class="avatar" style="background:#e65100;">A</div>
+        <div>
+          <div class="name">anaklorong</div>
+          <div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div>
+        </div>
+      </div>
+      <div class="dots">⋮</div>
+    </div>
+    <div class="review-text">Jadwal padam di wilayah rumah cukup membantu buat yang kerja dari rumah. Bisa isi baterai
+      laptop dan powerbank lebih dulu, jadi persiapannya tidak mendadak.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="header">
+      <div class="left">
+        <div class="avatar" style="background:#00695c;">D</div>
+        <div>
+          <div class="name">dapur.kecil</div>
+          <div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div>
+        </div>
+      </div>
+      <div class="dots">⋮</div>
+    </div>
+    <div class="review-text">Kemarin tambah daya untuk usaha katering dari 1300 ke 3500 VA. Prosesnya terasa cepat dan
+      setiap tahap ada pemberitahuan, jadi tidak bingung menunggu kabarnya.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="header">
+      <div class="left">
+        <div class="avatar" style="background:#0277bd;">A</div>
+        <div>
+          <div class="name">airmengalir</div>
+          <div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div>
+        </div>
+      </div>
+      <div class="dots">⋮</div>
+    </div>
+    <div class="review-text">Dari grafik pemakaian baru ketahuan pompa air terus menyala karena ada rembesan pipa.
+      Setelah dibetulkan, tagihan bulan berikutnya lebih ringan. Fitur pemakaiannya kepakai juga.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="header">
+      <div class="left">
+        <div class="avatar" style="background:#558b2f;">D</div>
+        <div>
+          <div class="name">dua_meteran</div>
+          <div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div>
+        </div>
+      </div>
+      <div class="dots">⋮</div>
+    </div>
+    <div class="review-text">Satu akun bisa dipakai mengurus beberapa ID pelanggan. Buat saya yang membayar listrik
+      rumah orang tua sekaligus kios, mengecek tagihan jadi lebih ringkas.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="header">
+      <div class="left">
+        <div class="avatar" style="background:#c62828;">N</div>
+        <div>
+          <div class="name">notifikasi_on</div>
+          <div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div>
+        </div>
+      </div>
+      <div class="dots">⋮</div>
+    </div>
+    <div class="review-text">Pengingat token hampir habis ini berguna sekali. Begitu ada notifikasi, bisa langsung isi
+      sebelum listrik keburu padam saat sedang rapat daring.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="header">
+      <div class="left">
+        <div class="avatar" style="background:#37474f;">H</div>
+        <div>
+          <div class="name">hitungdulu</div>
+          <div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div>
+        </div>
+      </div>
+      <div class="dots">⋮</div>
+    </div>
+    <div class="review-text">Sebelum mengajukan tambah daya, saya coba hitung perkiraan biayanya dulu di aplikasi. Jadi
+      bisa menyesuaikan uang yang perlu disiapkan dari awal.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="header">
+      <div class="left">
+        <div class="avatar" style="background:#1565c0;">D</div>
+        <div>
+          <div class="name">dompet.tipis</div>
+          <div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div>
+        </div>
+      </div>
+      <div class="dots">⋮</div>
+    </div>
+    <div class="review-text">Pilihan pembayaran cukup banyak, dari QRIS sampai dompet digital dan kartu kredit. Kalau
+      pas ada cashback atau potongan biaya admin, lumayan buat menghemat sedikit.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="header">
+      <div class="left">
+        <div class="avatar" style="background:#4a148c;">P</div>
+        <div>
+          <div class="name">penghuni.baru</div>
+          <div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div>
+        </div>
+      </div>
+      <div class="dots">⋮</div>
+    </div>
+    <div class="review-text">Setelah membeli rumah bekas, urusan balik nama meteran bisa diajukan dari HP. Berkas cukup
+      difoto dan dikirim, lebih praktis daripada membawa banyak dokumen ke loket.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="header">
+      <div class="left">
+        <div class="avatar" style="background:#2e7d32;">B</div>
+        <div>
+          <div class="name">blok_sebelah</div>
+          <div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div>
+        </div>
+      </div>
+      <div class="dots">⋮</div>
+    </div>
+    <div class="review-text">Pengajuan sambungan untuk beberapa rumah sekarang lebih tertata. Status setiap unit bisa
+      dicek sendiri, jadi pekerjaan tidak banyak tersita cuma untuk menanyakan progres.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="header">
+      <div class="left">
+        <div class="avatar" style="background:#e65100;">A</div>
+        <div>
+          <div class="name">arsipbulanan</div>
+          <div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div>
+        </div>
+      </div>
+      <div class="dots">⋮</div>
+    </div>
+    <div class="review-text">Bukti pembayaran bisa diunduh sebagai PDF atau dikirim ke email. Waktu diminta dokumen
+      untuk urusan KPR, saya tinggal mengambilnya dari riwayat transaksi.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="header">
+      <div class="left">
+        <div class="avatar" style="background:#880e4f;">T</div>
+        <div>
+          <div class="name">tetangga_gang</div>
+          <div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div>
+        </div>
+      </div>
+      <div class="dots">⋮</div>
+    </div>
+    <div class="review-text">Begitu melapor listrik padam di kompleks, langsung mendapat nomor pengaduan. Nomornya saya
+      bagikan ke grup RT supaya tetangga tahu laporannya sudah masuk.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="header">
+      <div class="left">
+        <div class="avatar" style="background:#006064;">W</div>
+        <div>
+          <div class="name">warungujung</div>
+          <div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div>
+        </div>
+      </div>
+      <div class="dots">⋮</div>
+    </div>
+    <div class="review-text">Informasi tarif per golongan cukup jelas. Saya pakai buat memperkirakan biaya listrik toko
+      kelontong supaya perhitungan pengeluaran bulanan lebih rapi.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="header">
+      <div class="left">
+        <div class="avatar" style="background:#1b5e20;">B</div>
+        <div>
+          <div class="name">baru.nyoba</div>
+          <div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div>
+        </div>
+      </div>
+      <div class="dots">⋮</div>
+    </div>
+    <div class="review-text">Pertama daftar sempat mengira akan banyak tahap. Ternyata verifikasi nomor HP tidak lama
+      dan akun langsung bisa dipakai. Cukup mudah untuk pengguna baru.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="header">
+      <div class="left">
+        <div class="avatar" style="background:#0d47a1;">B</div>
+        <div>
+          <div class="name">bayarontime</div>
+          <div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div>
+        </div>
+      </div>
+      <div class="dots">⋮</div>
+    </div>
+    <div class="review-text">Sudah lebih dari setahun memakai pembayaran otomatis. Sejauh ini tidak pernah terlambat
+      lagi, jadi tidak terus kepikiran batas bayar tanggal 20.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="header">
+      <div class="left">
+        <div class="avatar" style="background:#bf360c;">I</div>
+        <div>
+          <div class="name">ibu.rumahan</div>
+          <div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div>
+        </div>
+      </div>
+      <div class="dots">⋮</div>
+    </div>
+    <div class="review-text">Awalnya agak ragu bisa memakai aplikasinya sendiri. Setelah dicoba, menu dan petunjuknya
+      cukup mudah diikuti, termasuk buat saya yang kurang terbiasa dengan aplikasi.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="header">
+      <div class="left">
+        <div class="avatar" style="background:#558b2f;">C</div>
+        <div>
+          <div class="name">catatangka</div>
+          <div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div>
+        </div>
+      </div>
+      <div class="dots">⋮</div>
+    </div>
+    <div class="review-text">Catat meter sendiri membantu supaya pemakaian yang dilaporkan sesuai angka di rumah.
+      Tinggal foto meteran pada waktunya, lalu kirim dari aplikasi.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="header">
+      <div class="left">
+        <div class="avatar" style="background:#c62828;">P</div>
+        <div>
+          <div class="name">pulang.kampung</div>
+          <div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div>
+        </div>
+      </div>
+      <div class="dots">⋮</div>
+    </div>
+    <div class="review-text">Mengisi token rumah ibu di kampung jadi lebih sederhana. Cukup masukkan nomor meter dan
+      bayar dari sini, tanpa harus mengirim uang dulu untuk dibelikan di warung.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="header">
+      <div class="left">
+        <div class="avatar" style="background:#37474f;">N</div>
+        <div>
+          <div class="name">nunggupetugas</div>
+          <div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div>
+        </div>
+      </div>
+      <div class="dots">⋮</div>
+    </div>
+    <div class="review-text">Bisa melihat petugas sedang menuju lokasi membuat menunggu terasa lebih jelas. Jadi tidak
+      perlu berulang kali menghubungi layanan pelanggan untuk menanyakan posisinya.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="header">
+      <div class="left">
+        <div class="avatar" style="background:#1a237e;">H</div>
+        <div>
+          <div class="name">hajatan_kecil</div>
+          <div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div>
+        </div>
+      </div>
+      <div class="dots">⋮</div>
+    </div>
+    <div class="review-text">Untuk acara hajatan di gang, saya mengurus sambungan sementara lewat aplikasi. Petugas
+      datang sesuai waktu dan listriknya cukup untuk perlengkapan acara.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="header">
+      <div class="left">
+        <div class="avatar" style="background:#4a148c;">A</div>
+        <div>
+          <div class="name">aturbelanja</div>
+          <div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div>
+        </div>
+      </div>
+      <div class="dots">⋮</div>
+    </div>
+    <div class="review-text">Perkiraan tagihan yang tampil cukup dekat dengan tagihan akhirnya. Lumayan bisa dijadikan
+      pegangan saat membagi uang belanja untuk kebutuhan bulanan.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="header">
+      <div class="left">
+        <div class="avatar" style="background:#00695c;">P</div>
+        <div>
+          <div class="name">pekerja.lapangan</div>
+          <div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div>
+        </div>
+      </div>
+      <div class="dots">⋮</div>
+    </div>
+    <div class="review-text">Sering bekerja di lapangan dan sulit menyempatkan diri ke tempat pembayaran. Sekarang bisa
+      membereskan tagihan dari HP waktu istirahat, lebih cocok dengan kegiatan saya.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="header">
+      <div class="left">
+        <div class="avatar" style="background:#558b2f;">L</div>
+        <div>
+          <div class="name">lampugang</div>
+          <div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div>
+        </div>
+      </div>
+      <div class="dots">⋮</div>
+    </div>
+    <div class="review-text">Lampu jalan depan gang lama tidak menyala. Setelah dilaporkan melalui aplikasi pada malam
+      hari, besok sorenya sudah terang lagi. Terima kasih untuk yang menangani.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="header">
+      <div class="left">
+        <div class="avatar" style="background:#1a73e8;">J</div>
+        <div>
+          <div class="name">jempol_kanan</div>
+          <div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div>
+        </div>
+      </div>
+      <div class="dots">⋮</div>
+    </div>
+    <div class="review-text">Verifikasi sidik jari sebelum transaksi bikin lebih tenang. Kalau HP sedang dipinjam anak
+      atau teman, tidak gampang ada pembayaran yang tertekan tanpa sengaja.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="header">
+      <div class="left">
+        <div class="avatar" style="background:#d32f2f;">A</div>
+        <div>
+          <div class="name">anak.kost07</div>
+          <div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div>
+        </div>
+      </div>
+      <div class="dots">⋮</div>
+    </div>
+    <div class="review-text">Buat anak kos yang tinggal jauh dari keluarga, aplikasi ini cukup menolong. Saat token
+      bunyi tengah malam, masih bisa beli nominal kecil dengan saldo dompet digital.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="header">
+      <div class="left">
+        <div class="avatar" style="background:#2e7d32;">C</div>
+        <div>
+          <div class="name">cek.kabel</div>
+          <div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div>
+        </div>
+      </div>
+      <div class="dots">⋮</div>
+    </div>
+    <div class="review-text">Tagihan sempat naik padahal kegiatan di rumah terasa biasa saja. Setelah dibuat laporan,
+      petugas datang mengecek dan menemukan masalah pada kabel. Untung bisa segera ditangani.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="header">
+      <div class="left">
+        <div class="avatar" style="background:#7b1fa2;">T</div>
+        <div>
+          <div class="name">tiket_terbuka</div>
+          <div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div>
+        </div>
+      </div>
+      <div class="dots">⋮</div>
+    </div>
+    <div class="review-text">Setiap pengaduan punya riwayat dan perkiraan penyelesaian. Walau tetap perlu menunggu,
+      setidaknya saya bisa melihat perkembangan laporannya dengan jelas.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="header">
+      <div class="left">
+        <div class="avatar" style="background:#e65100;">B</div>
+        <div>
+          <div class="name">bapakbelajar</div>
+          <div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div>
+        </div>
+      </div>
+      <div class="dots">⋮</div>
+    </div>
+    <div class="review-text">Bapak yang sudah pensiun sekarang mulai bisa membeli token sendiri. Tulisan dan pilihan
+      menunya menurut beliau mudah dilihat, jadi tidak selalu minta dibantu lagi.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="header">
+      <div class="left">
+        <div class="avatar" style="background:#00695c;">T</div>
+        <div>
+          <div class="name">tanggal_tua</div>
+          <div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div>
+        </div>
+      </div>
+      <div class="dots">⋮</div>
+    </div>
+    <div class="review-text">Pilihan token 20 ribu terasa menolong kalau uang sedang mepet menjelang gajian. Bisa isi
+      sesuai kemampuan dulu tanpa harus membeli nominal besar.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="header">
+      <div class="left">
+        <div class="avatar" style="background:#0277bd;">M</div>
+        <div>
+          <div class="name">masih.melek</div>
+          <div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div>
+        </div>
+      </div>
+      <div class="dots">⋮</div>
+    </div>
+    <div class="review-text">Pernah perlu bantuan sekitar jam satu malam karena ada kendala. Chat layanan pelanggan
+      ditanggapi dan masalahnya dibantu sampai selesai dalam beberapa menit.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="header">
+      <div class="left">
+        <div class="avatar" style="background:#880e4f;">C</div>
+        <div>
+          <div class="name">cari.loket</div>
+          <div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div>
+        </div>
+      </div>
+      <div class="dots">⋮</div>
+    </div>
+    <div class="review-text">Informasi lokasi kantor berikut jam bukanya berguna ketika perlu datang langsung. Saya jadi
+      bisa memilih waktu berangkat dan tidak perlu mencari-cari alamat lagi.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="header">
+      <div class="left">
+        <div class="avatar" style="background:#1b5e20;">T</div>
+        <div>
+          <div class="name">tukanginstalasi</div>
+          <div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div>
+        </div>
+      </div>
+      <div class="dots">⋮</div>
+    </div>
+    <div class="review-text">Mengurus SLO instalasi pelanggan lewat aplikasi lebih praktis buat pekerjaan saya. Dokumen
+      digitalnya juga tersimpan di akun sehingga mudah dicari saat dibutuhkan.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="header">
+      <div class="left">
+        <div class="avatar" style="background:#c62828;">B</div>
+        <div>
+          <div class="name">bakso.pagi</div>
+          <div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div>
+        </div>
+      </div>
+      <div class="dots">⋮</div>
+    </div>
+    <div class="review-text">Sebelum mulai berjualan bakso, tagihan listrik bisa dibereskan sambil menyiapkan warung.
+      Tidak perlu meninggalkan tempat usaha untuk antre membayar.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="header">
+      <div class="left">
+        <div class="avatar" style="background:#558b2f;">H</div>
+        <div>
+          <div class="name">hujanlewat</div>
+          <div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div>
+        </div>
+      </div>
+      <div class="dots">⋮</div>
+    </div>
+    <div class="review-text">Saat hujan, listrik rumah sempat sering tidak stabil. Setelah mengirim laporan, teknisi
+      memperbaiki kabel di tiang. Sekarang kondisinya sudah jauh lebih baik.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="header">
+      <div class="left">
+        <div class="avatar" style="background:#0d47a1;">B</div>
+        <div>
+          <div class="name">bukasebentar</div>
+          <div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div>
+        </div>
+      </div>
+      <div class="dots">⋮</div>
+    </div>
+    <div class="review-text">Halaman awalnya terasa cukup rapi. Informasi token dan tagihan mudah ditemukan tanpa harus
+      membuka banyak menu, jadi cek sebentar juga sudah cukup.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="header">
+      <div class="left">
+        <div class="avatar" style="background:#4a148c;">S</div>
+        <div>
+          <div class="name">salah.pencet</div>
+          <div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div>
+        </div>
+      </div>
+      <div class="dots">⋮</div>
+    </div>
+    <div class="review-text">Pernah keliru memasukkan nomor meter saat membeli token. Saya menghubungi bantuan dan
+      dibantu mengurus pengembaliannya sampai selesai. Untung cepat ditanyakan.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="header">
+      <div class="left">
+        <div class="avatar" style="background:#e65100;">K</div>
+        <div>
+          <div class="name">kipasangin</div>
+          <div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div>
+        </div>
+      </div>
+      <div class="dots">⋮</div>
+    </div>
+    <div class="review-text">Beberapa saran hemat listrik di aplikasi saya coba terapkan di rumah, terutama soal
+      pemakaian AC siang hari. Hasilnya memang pelan-pelan, tetapi tagihan sedikit berkurang.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="header">
+      <div class="left">
+        <div class="avatar" style="background:#006064;">H</div>
+        <div>
+          <div class="name">hp_lama</div>
+          <div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div>
+        </div>
+      </div>
+      <div class="dots">⋮</div>
+    </div>
+    <div class="review-text">Dibanding versi sebelumnya, pembaruan ini terasa lebih ringan di HP lama saya. Buka menu
+      dan melakukan pembayaran juga lebih lancar selama dipakai.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="header">
+      <div class="left">
+        <div class="avatar" style="background:#1565c0;">U</div>
+        <div>
+          <div class="name">ujungkecamatan</div>
+          <div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div>
+        </div>
+      </div>
+      <div class="dots">⋮</div>
+    </div>
+    <div class="review-text">Tinggal di kecamatan yang cukup jauh dari kota membuat layanan lewat HP terasa membantu.
+      Untuk urusan listrik tidak selalu perlu menghabiskan waktu dan ongkos perjalanan.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="header">
+      <div class="left">
+        <div class="avatar" style="background:#558b2f;">S</div>
+        <div>
+          <div class="name">salin.tempel</div>
+          <div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div>
+        </div>
+      </div>
+      <div class="dots">⋮</div>
+    </div>
+    <div class="review-text">Setelah membelikan token untuk adik, nomornya bisa langsung disalin dan dikirim lewat
+      WhatsApp. Lebih enak daripada mengetik ulang dua puluh angka satu per satu.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="header">
+      <div class="left">
+        <div class="avatar" style="background:#880e4f;">P</div>
+        <div>
+          <div class="name">penjagakontrakan</div>
+          <div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div>
+        </div>
+      </div>
+      <div class="dots">⋮</div>
+    </div>
+    <div class="review-text">Mengurus listrik banyak kamar kontrakan lebih mudah dengan beberapa ID dalam satu akun.
+      Tagihan masing-masing unit bisa dipantau tanpa bolak-balik masuk akun lain.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="header">
+      <div class="left">
+        <div class="avatar" style="background:#37474f;">A</div>
+        <div>
+          <div class="name">angka_buram</div>
+          <div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div>
+        </div>
+      </div>
+      <div class="dots">⋮</div>
+    </div>
+    <div class="review-text">Angka pada layar meteran rumah sudah sulit terbaca. Saya melapor melalui aplikasi dan
+      beberapa hari kemudian petugas menggantinya. Penanganannya cepat dan tidak dikenai biaya.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="header">
+      <div class="left">
+        <div class="avatar" style="background:#bf360c;">S</div>
+        <div>
+          <div class="name">sinyal_segaris</div>
+          <div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div>
+        </div>
+      </div>
+      <div class="dots">⋮</div>
+    </div>
+    <div class="review-text">Di rumah sinyal sering pas-pasan, tetapi mengecek tagihan dan membeli token masih cukup
+      lancar. Buat kebutuhan itu aplikasinya tidak terasa berat.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="header">
+      <div class="left">
+        <div class="avatar" style="background:#1a237e;">S</div>
+        <div>
+          <div class="name">sebelumbeli</div>
+          <div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div>
+        </div>
+      </div>
+      <div class="dots">⋮</div>
+    </div>
+    <div class="review-text">Sebelum membeli AC, saya mencoba simulasi pemakaian untuk membandingkan kebutuhan daya dan
+      biaya bulanan. Cukup membantu saat menimbang pilihan ukuran AC.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="header">
+      <div class="left">
+        <div class="avatar" style="background:#2e7d32;">I</div>
+        <div>
+          <div class="name">ingat.tanggal</div>
+          <div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div>
+        </div>
+      </div>
+      <div class="dots">⋮</div>
+    </div>
+    <div class="review-text">Notifikasi menjelang jatuh tempo membantu saya lebih tertib membayar. Sekarang lebih jarang
+      kelupaan dan tidak perlu mengeluarkan uang tambahan untuk denda.</div>
+  </div>
+
+</body>
+
+</html>

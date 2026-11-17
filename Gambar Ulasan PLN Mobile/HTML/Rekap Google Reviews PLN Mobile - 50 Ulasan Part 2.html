@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Google Reviews</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    font-family: 'Google Sans', Roboto, Arial, sans-serif;
+    gap: 2px;
+  }
+  .review-card {
+    background: #ffffff;
+    padding: 16px 16px 20px 16px;
+    width: 500px;
+    border-bottom: 1px solid #dadce0;
+  }
+  .review-card:last-child { border-bottom: none; }
+  .header { display: flex; align-items: flex-start; justify-content: space-between; }
+  .left { display: flex; align-items: flex-start; gap: 12px; }
+  .avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px; font-weight: 500; color: #fff; flex-shrink: 0;
+  }
+  .name { color: #202124; font-size: 14px; font-weight: 500; line-height: 1.4; }
+  .meta { display: flex; align-items: center; gap: 8px; margin-top: 2px; }
+  .stars { color: #fbbc04; font-size: 15px; letter-spacing: 1px; }
+  .date { color: #5f6368; font-size: 12px; }
+  .dots { color: #5f6368; font-size: 20px; cursor: pointer; padding: 0 4px; }
+  .review-text { color: #3c4043; font-size: 14px; line-height: 1.6; margin-top: 10px; padding-left: 52px; }
+</style>
+</head>
+<body>
+
+<div class="review-card">
+  <div class="header"><div class="left"><div class="avatar" style="background:#1a73e8;">A</div><div><div class="name">Aldi Kurniawan</div><div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div></div></div><div class="dots">⋮</div></div>
+  <div class="review-text">Pas lg di jalan kluar kota eh org rumah kabarin meteran udh bunyi. Lgsg beli token dr hp, ga nyampe semenit udah masuk. Ngebantu bgt pas lg mepet!</div>
+</div>
+
+<div class="review-card">
+  <div class="header"><div class="left"><div class="avatar" style="background:#ad1457;">B</div><div><div class="name">Bella Safira</div><div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div></div></div><div class="dots">⋮</div></div>
+  <div class="review-text">Enak bgt skrg bs liat perbandingan tagihan 3 bln terakhir. Br tau klo borosnya tuh gr2 sering nyalain water heater &amp; mesin cuci tiap hari. Jd lebih hemat skrg hehe.</div>
+</div>
+
+<div class="review-card">
+  <div class="header"><div class="left"><div class="avatar" style="background:#2e7d32;">C</div><div><div class="name">Candra Wijaksono</div><div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div></div></div><div class="dots">⋮</div></div>
+  <div class="review-text">Kmrn mlm travo dkt rmh sempet korslet trs mati total. Lgsg lapor via aplilasi ini, ga sampe sejam petugasny udah dtg cek lokasi. Mantap lah responnya cepet!</div>
+</div>
+
+<div class="review-card">
+  <div class="header"><div class="left"><div class="avatar" style="background:#7b1fa2;">D</div><div><div class="name">Dinda Oktavia</div><div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div></div></div><div class="dots">⋮</div></div>
+  <div class="review-text">Ngurus pasang listrik baru bwt rumah br nikah gampang bener. Tinggal upload ktp sm berkas rmh dr hp, ga usah cuti kerja bwt antri di kntr pln. Rekomended bgt!</div>
+</div>
+
+<div class="review-card">
+  <div class="header"><div class="left"><div class="avatar" style="background:#e65100;">E</div><div><div class="name">Erlangga Putra</div><div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div></div></div><div class="dots">⋮</div></div>
+  <div class="review-text">Info pemadaman per kelurahan jelas bgt sih, jd klo lg wfh bs siap2 charge laptop sm powerbank duluan sblm jam padamnya. Ga pernah kaget lg deh.</div>
+</div>
+
+<div class="review-card">
+  <div class="header"><div class="left"><div class="avatar" style="background:#00695c;">F</div><div><div class="name">Febriani Putri</div><div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div></div></div><div class="dots">⋮</div></div>
+  <div class="review-text">Naikin daya buat usaha katering sy dr 1300 ke 3500va cepet bgt prosesny. Tiap step dpt notif updatenya jd jelas udah sampe mana. Keren si pelayanannya!</div>
+</div>
+
+<div class="review-card">
+  <div class="header"><div class="left"><div class="avatar" style="background:#0277bd;">G</div><div><div class="name">Guntur Prakoso</div><div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div></div></div><div class="dots">⋮</div></div>
+  <div class="review-text">Gara2 ngecek grafik kwh di app jd ngeh kalo sanyo di belakang nyala trs krn pipa bocor halus. Untung cepet ketauan, bln dpnnya tagihan lgsg turun lumayan bgt.</div>
+</div>
+
+<div class="review-card">
+  <div class="header"><div class="left"><div class="avatar" style="background:#558b2f;">H</div><div><div class="name">Hana Pertiwi</div><div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div></div></div><div class="dots">⋮</div></div>
+  <div class="review-text">Bisa gabungin bbrp id pelanggan dlm 1 akun tuh praktis bgt. Sy pegang bayaran listrk rumah ortu sm kios usaha jd gampang ngeceknya tiap awal bln.</div>
+</div>
+
+<div class="review-card">
+  <div class="header"><div class="left"><div class="avatar" style="background:#c62828;">I</div><div><div class="name">Iqbal Maulana</div><div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div></div></div><div class="dots">⋮</div></div>
+  <div class="review-text">Suka sm fitur pengingat pas token mau abis. Begitu sisa dikit lgsg muncul notif di hp jd bisa buru2 topup sblm mati pas lg meeting zoom. Top!</div>
+</div>
+
+<div class="review-card">
+  <div class="header"><div class="left"><div class="avatar" style="background:#37474f;">J</div><div><div class="name">Jessica Tanoto</div><div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div></div></div><div class="dots">⋮</div></div>
+  <div class="review-text">Ada fitur itung estimasi biaya tambah daya sblm ngajuin, jd bs siapin budget dr jauh2 hari tanpa takut kaget biayanya brp. Simpel tp kepake bgt!</div>
+</div>
+
+<div class="review-card">
+  <div class="header"><div class="left"><div class="avatar" style="background:#1565c0;">K</div><div><div class="name">Khoirul Anam</div><div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div></div></div><div class="dots">⋮</div></div>
+  <div class="review-text">Byr listrik skrg bs pake qris, ewallet sm kartu kredit jg. Kadang dpt promo cashback atau potongan admin, mayan bgt kan buat ngirit pengeluaran bulanan hehe.</div>
+</div>
+
+<div class="review-card">
+  <div class="header"><div class="left"><div class="avatar" style="background:#4a148c;">L</div><div><div class="name">Lidia Permata</div><div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div></div></div><div class="dots">⋮</div></div>
+  <div class="review-text">Urus balik nama meteran pasca beli rumah second ternyata bs lwt hp aja skrg. Ga perlu ribet dtg ke loket bawa map tebel, smuanya tinggal foto sm upload.</div>
+</div>
+
+<div class="review-card">
+  <div class="header"><div class="left"><div class="avatar" style="background:#2e7d32;">M</div><div><div class="name">Mahendra Kusuma</div><div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div></div></div><div class="dots">⋮</div></div>
+  <div class="review-text">Buat proyek perumahan kecil2an skrg pengajuan sambungan kolektif udah rapi bgt di aplikasi. Ga makan wkt lama &amp; progres per unitnya gampang dipantau.</div>
+</div>
+
+<div class="review-card">
+  <div class="header"><div class="left"><div class="avatar" style="background:#e65100;">N</div><div><div class="name">Nia Rahmawati</div><div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div></div></div><div class="dots">⋮</div></div>
+  <div class="review-text">Bukti bayar tagihan tiap bln bs lgsg download pdf atau kirim ke email. Kmrn pas butuh lampiran buat urusan kpr bank tinggal ambil dr riwayat transaksi, satset bgt!</div>
+</div>
+
+<div class="review-card">
+  <div class="header"><div class="left"><div class="avatar" style="background:#880e4f;">O</div><div><div class="name">Oki Setiadi</div><div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div></div></div><div class="dots">⋮</div></div>
+  <div class="review-text">Tadi siang komplek sempet mati lampu, pas lapor lewat aplilasi lgsg dpt no tiket pengaduan. Tinggal ss kirim ke grup rt biar tetangga tau udah ada yg lapor.</div>
+</div>
+
+<div class="review-card">
+  <div class="header"><div class="left"><div class="avatar" style="background:#006064;">P</div><div><div class="name">Priska Novita</div><div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div></div></div><div class="dots">⋮</div></div>
+  <div class="review-text">Info tarif dasar listrik lengkap sesuai golongannya masing2. Buat sy yg punya toko kelontong jd gampang ngitung biaya operasional listrk tiap bulannya.</div>
+</div>
+
+<div class="review-card">
+  <div class="header"><div class="left"><div class="avatar" style="background:#1b5e20;">Q</div><div><div class="name">Qoriatul Aini</div><div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div></div></div><div class="dots">⋮</div></div>
+  <div class="review-text">Daftar akun barunya gampang poll, cm verif no hp bentar lgsg bs dipake smua fiturnya. Ga ribet sm sekali buat pengguna baru kaya sy.</div>
+</div>
+
+<div class="review-card">
+  <div class="header"><div class="left"><div class="avatar" style="background:#0d47a1;">R</div><div><div class="name">Raka Prasetyo</div><div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div></div></div><div class="dots">⋮</div></div>
+  <div class="review-text">Udh setahun lebih pake fitur autodebet bayar tagihan, ga pernah sekalipun telat atau kena denda. Tenang bgt ga kepikiran takut lupa bayar tgl 20.</div>
+</div>
+
+<div class="review-card">
+  <div class="header"><div class="left"><div class="avatar" style="background:#bf360c;">S</div><div><div class="name">Siska Wulansari</div><div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div></div></div><div class="dots">⋮</div></div>
+  <div class="review-text">Awalnya kirain bakal ribet makenya eh ternyata tampilannya simpel &amp; jelas. Emak2 yg ga terlalu paham teknologi kyk sy aja bs langsung ngerti menu2nya.</div>
+</div>
+
+<div class="review-card">
+  <div class="header"><div class="left"><div class="avatar" style="background:#558b2f;">T</div><div><div class="name">Tommy Gunadi</div><div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div></div></div><div class="dots">⋮</div></div>
+  <div class="review-text">Fitur catat meter mandiri tuh ngebantu bgt sih, tiap tgl segitu tinggal foto angka kwh trs kirim. Jd tagihan beneran sesuai sm yg kepake, ga maen kira2.</div>
+</div>
+
+<div class="review-card">
+  <div class="header"><div class="left"><div class="avatar" style="background:#c62828;">U</div><div><div class="name">Ulfa Khairani</div><div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div></div></div><div class="dots">⋮</div></div>
+  <div class="review-text">Kmrn isiin token buat rumah ibu di kampung gampang bgt, tinggal masukin no meter beliau trs bayar. Ga perlu tf duit ke kampung dulu br beli ke warung.</div>
+</div>
+
+<div class="review-card">
+  <div class="header"><div class="left"><div class="avatar" style="background:#37474f;">V</div><div><div class="name">Veronika Sihaloho</div><div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div></div></div><div class="dots">⋮</div></div>
+  <div class="review-text">Bisa tracking posisi petugas yg lg otw pas ada gangguan itu keren sih. Jd ga perlu nelpon cs terus2an nanyain udah nyampe mana teknisinya.</div>
+</div>
+
+<div class="review-card">
+  <div class="header"><div class="left"><div class="avatar" style="background:#1a237e;">W</div><div><div class="name">Wisnu Wardhana</div><div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div></div></div><div class="dots">⋮</div></div>
+  <div class="review-text">Kemaren ngajuin sambung sementara buat acara hajatan di gang lewat app ini lancar jaya. Petugasnya ontime &amp; dayanya kuat buat sound system sm tenda.</div>
+</div>
+
+<div class="review-card">
+  <div class="header"><div class="left"><div class="avatar" style="background:#4a148c;">Y</div><div><div class="name">Yohan Kristanto</div><div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div></div></div><div class="dots">⋮</div></div>
+  <div class="review-text">Perkiraan tagihan di halaman depan lumayan akurat sih, melesetnya cm tipis bgt sm tagihan asli tiap akhir bln. Enak buat ngatur pos belanja bulanan.</div>
+</div>
+
+<div class="review-card">
+  <div class="header"><div class="left"><div class="avatar" style="background:#00695c;">Z</div><div><div class="name">Zahra Aulia</div><div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div></div></div><div class="dots">⋮</div></div>
+  <div class="review-text">Kerja di lapangan sering ga sempet ke alfa atau indomaret, untung ada app ini jd bs bayar listrik kapan aja pas lg istirahat siang. Praktis poll!</div>
+</div>
+
+<div class="review-card">
+  <div class="header"><div class="left"><div class="avatar" style="background:#558b2f;">A</div><div><div class="name">Adit Firmansyah</div><div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div></div></div><div class="dots">⋮</div></div>
+  <div class="review-text">Lampu pju dpn gang mati udah seminggu, iseng lapor lwt pln mobile malemnya eh besok sorenya udah nyala lg. Makasihh byk buat tim teknisnya!</div>
+</div>
+
+<div class="review-card">
+  <div class="header"><div class="left"><div class="avatar" style="background:#1a73e8;">B</div><div><div class="name">Bunga Kirana</div><div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div></div></div><div class="dots">⋮</div></div>
+  <div class="review-text">Pakai sidik jari pas mau transaksi bikin ngerasa lebih aman aja sih, jd klo hp dipinjem anak atau tmn ga kepencet bayar macem2.</div>
+</div>
+
+<div class="review-card">
+  <div class="header"><div class="left"><div class="avatar" style="background:#d32f2f;">C</div><div><div class="name">Choirul Huda</div><div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div></div></div><div class="dots">⋮</div></div>
+  <div class="review-text">Ngekos sendirian jauh dr ortu tuh kepake bgt aplikasi ini. Tengah mlm token bunyi tinggal isi 20rb pake saldo ewallet, ga sampe 1 mnt lgsg aman lg.</div>
+</div>
+
+<div class="review-card">
+  <div class="header"><div class="left"><div class="avatar" style="background:#2e7d32;">D</div><div><div class="name">Dedi Suparman</div><div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div></div></div><div class="dots">⋮</div></div>
+  <div class="review-text">Bln kemaren tagihanya melonjak ga wajar pdhl pemakaian biasa aja. Lapor di aplikasi besoknya dtg petugas ngecek, ternyata ada kabel ngefong. Cepet beresnya!</div>
+</div>
+
+<div class="review-card">
+  <div class="header"><div class="left"><div class="avatar" style="background:#7b1fa2;">E</div><div><div class="name">Elsa Marlina</div><div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div></div></div><div class="dots">⋮</div></div>
+  <div class="review-text">Suka krn tiap lapor keluhan ada estimasi wkt selesainya &amp; riwayat tiketnya jelas. Jd ga merasa dicuekin klo lg ada kendala listrik di rumah.</div>
+</div>
+
+<div class="review-card">
+  <div class="header"><div class="left"><div class="avatar" style="background:#e65100;">F</div><div><div class="name">Farhan Syarif</div><div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div></div></div><div class="dots">⋮</div></div>
+  <div class="review-text">Bapak sy yg udah pensiun aja skrg bs beli token sendiri dr app ini krn tulisannya gede2 dan menunya ga bikin bingung. Ramah bgt buat org tua!</div>
+</div>
+
+<div class="review-card">
+  <div class="header"><div class="left"><div class="avatar" style="background:#00695c;">G</div><div><div class="name">Gina Salsabila</div><div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div></div></div><div class="dots">⋮</div></div>
+  <div class="review-text">Paling seneng bs beli token nominal 20rb pas lg tgl tua haha. Ga harus keluar duit gede sekaligus, mayan bgt buat nyambung sampe tgl gajian.</div>
+</div>
+
+<div class="review-card">
+  <div class="header"><div class="left"><div class="avatar" style="background:#0277bd;">H</div><div><div class="name">Hafiz Abdullah</div><div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div></div></div><div class="dots">⋮</div></div>
+  <div class="review-text">Chat cs 24 jamnya beneran dibales org bukan bot doang. Sempet error pas jam 1 pagi lgsg dibantu beresin sm adminnya dlm bbrp menit. Gokil!</div>
+</div>
+
+<div class="review-card">
+  <div class="header"><div class="left"><div class="avatar" style="background:#880e4f;">I</div><div><div class="name">Irma Suryani</div><div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div></div></div><div class="dots">⋮</div></div>
+  <div class="review-text">Ada fitur cek kantor pln terdekat lengkap sm jam bukanya jg, jd pas kemaren butuh konsultasi tatap muka ga nyasar &amp; tau jadwal operasionalnya.</div>
+</div>
+
+<div class="review-card">
+  <div class="header"><div class="left"><div class="avatar" style="background:#1b5e20;">J</div><div><div class="name">Johan Sitompul</div><div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div></div></div><div class="dots">⋮</div></div>
+  <div class="review-text">Pengajuan SLO buat instalasi klien skrg serba digital lwt sini. File sertifikatnya aman kesimpen di akun, ga takut lecek atau ilang ky berkas kertas.</div>
+</div>
+
+<div class="review-card">
+  <div class="header"><div class="left"><div class="avatar" style="background:#c62828;">K</div><div><div class="name">Kartika Sari</div><div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div></div></div><div class="dots">⋮</div></div>
+  <div class="review-text">Bayar tagihan warung bakso sy skrg sambil duduk aja sblm buka lapak. Ga perlu ninggalin warung buat antri di atm atau loket pembayaran lg.</div>
+</div>
+
+<div class="review-card">
+  <div class="header"><div class="left"><div class="avatar" style="background:#558b2f;">L</div><div><div class="name">Luky Hermawan</div><div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div></div></div><div class="dots">⋮</div></div>
+  <div class="review-text">Listrik di area rmh sempet sering kedap-kedip pas ujan, abis lapor lwt app teknisi dtg benerin kabel tiang. Alhamdulilah skrg udah stabil ga jeglek lg.</div>
+</div>
+
+<div class="review-card">
+  <div class="header"><div class="left"><div class="avatar" style="background:#0d47a1;">M</div><div><div class="name">Mira Yuliana</div><div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div></div></div><div class="dots">⋮</div></div>
+  <div class="review-text">Tampilan depannya rapih bgt, saldo token sm info tagihan langsung keliatan pas buka app tanpa harus klik banyak menu. Simpel &amp; ga bikin pusing.</div>
+</div>
+
+<div class="review-card">
+  <div class="header"><div class="left"><div class="avatar" style="background:#4a148c;">N</div><div><div class="name">Nanda Pratama</div><div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div></div></div><div class="dots">⋮</div></div>
+  <div class="review-text">Pernah salah masukin no meteran tetangga pas beli pulsa listrik wkwk, untung cepet chat bantuan trs dibantu proses refund smpe beres. Amanah bgt!</div>
+</div>
+
+<div class="review-card">
+  <div class="header"><div class="left"><div class="avatar" style="background:#e65100;">O</div><div><div class="name">Opan Setiawan</div><div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div></div></div><div class="dots">⋮</div></div>
+  <div class="review-text">Iseng ngikutin tips hemat listrik yg ada di menu edukasinya, lumayan ngaruh sih buat ngurangin pemakaian ac pas siang bolong. Tagihan turun dikit2.</div>
+</div>
+
+<div class="review-card">
+  <div class="header"><div class="left"><div class="avatar" style="background:#006064;">P</div><div><div class="name">Pipit Handayani</div><div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div></div></div><div class="dots">⋮</div></div>
+  <div class="review-text">Update yg skrg kerasa jauh lebih enteng dibanding versi lama. Di hp kentang sy aja lancar jaya ga pernah force close atau lemot pas mau bayar.</div>
+</div>
+
+<div class="review-card">
+  <div class="header"><div class="left"><div class="avatar" style="background:#1565c0;">R</div><div><div class="name">Reno Alamsyah</div><div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div></div></div><div class="dots">⋮</div></div>
+  <div class="review-text">Sy tinggal di daerah kecamatan yg jauh dr kota, adanya aplikasi ini ngebantu bgt ga usah abis bensin &amp; waktu sejam lebih cuma buat ngurus listrik.</div>
+</div>
+
+<div class="review-card">
+  <div class="header"><div class="left"><div class="avatar" style="background:#558b2f;">S</div><div><div class="name">Selvi Anggita</div><div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div></div></div><div class="dots">⋮</div></div>
+  <div class="review-text">Abis beliin token buat adek tinggal klik salin no token trs paste ke wa, ga perlu ngetik manual 20 digit yg sering bikin salah pencet haha.</div>
+</div>
+
+<div class="review-card">
+  <div class="header"><div class="left"><div class="avatar" style="background:#880e4f;">T</div><div><div class="name">Tedi Kurnia</div><div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div></div></div><div class="dots">⋮</div></div>
+  <div class="review-text">Kelola belasan unit kontrakan pake fitur multi id tuh lifesaver bgt sih. Cukup 1 akun aja udah bs pantau tagihan smua kamar sekaligus tanpa login ulang.</div>
+</div>
+
+<div class="review-card">
+  <div class="header"><div class="left"><div class="avatar" style="background:#37474f;">U</div><div><div class="name">Umi Kulsum</div><div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div></div></div><div class="dots">⋮</div></div>
+  <div class="review-text">Kmrn layar kwh meter di depan rumah buram ga kebaca angkanya, lapor via app eh bbrp hari kmudian lgsg diganti baru sm petugas. Gratis dan cepet!</div>
+</div>
+
+<div class="review-card">
+  <div class="header"><div class="left"><div class="avatar" style="background:#bf360c;">V</div><div><div class="name">Vicky Ramadhan</div><div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div></div></div><div class="dots">⋮</div></div>
+  <div class="review-text">Walopun sinyal di daerah rumah sy cm 4g pas-pasan tp aplilasi ini msh enteng dibuka buat cek tagihan sm beli token. Ga muter2 lama loadingnya.</div>
+</div>
+
+<div class="review-card">
+  <div class="header"><div class="left"><div class="avatar" style="background:#1a237e;">W</div><div><div class="name">Wawan Setiabudi</div><div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div></div></div><div class="dots">⋮</div></div>
+  <div class="review-text">Sblm beli ac baru sempet coba2 simulasi pemakaian daya di sini biar tau kira2 nambah brp per bln. Jd bisa nentuin mau ambil yg setengah pk apa 1 pk.</div>
+</div>
+
+<div class="review-card">
+  <div class="header"><div class="left"><div class="avatar" style="background:#2e7d32;">Y</div><div><div class="name">Yanti Susilowati</div><div class="meta"><span class="stars">★★★★★</span><span class="date">17/11/26</span></div></div></div><div class="dots">⋮</div></div>
+  <div class="review-text">Notifnya rajin ngingetin sblm jatuh tempo jd ga pernah telat bayar lagi. Lumayan ga buang2 duit buat bayar denda telat tiap bulan kaya dulu.</div>
+</div>
+
+</body>
+</html>
+
