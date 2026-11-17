@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+.venv/
+.env
+.env.*
+!.env.example
+*.zip
+*.tmp
+/Gambar Ulasan PLN Mobile/Part */*.png
+/Hasil Ekspor/*
+!/Hasil Ekspor/.gitkeep
+/antrean_ulasan_form.json
+/data_ulasan_form.json
+/progres_ulasan_form.json

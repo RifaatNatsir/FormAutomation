@@ -1,0 +1,52 @@
+# DEPENDENSI PYTHON (versi yang digunakan dan diuji di proyek ini)
+# Instal: python -m pip install -r requirements.txt
+Pillow==12.3.0
+playwright==1.64.1
+#
+# KEBUTUHAN SISTEM
+# - Windows 10/11 untuk launcher MULAI_AUTOMASI.bat.
+# - Python 3.11+ (diuji dengan Python 3.11).
+# - Node.js 24+ dan npm, untuk memasang CLI Agent Browser.
+# - Google Chrome biasa, login Google, untuk pengisian form dengan upload.
+# - Akses internet dan izin mengakses formulir tujuan.
+#
+# INSTALASI SETELAH CLONE GITHUB (jalankan dari folder proyek)
+# python -m venv .venv
+# .venv\Scripts\python.exe -m pip install -r requirements.txt
+# .venv\Scripts\python.exe -m playwright install chromium
+# npm install -g agent-browser@0.43.0
+# agent-browser install
+#
+# CARA MENJALANKAN
+# Buka Chrome, login Google, lalu aktifkan Remote Debugging melalui:
+# chrome://inspect/#remote-debugging
+# Klik dua kali MULAI_AUTOMASI.bat atau jalankan .\MULAI_AUTOMASI.bat.
+# Launcher otomatis memilih Python .venv jika tersedia.
+# Pilih Allow jika Chrome meminta koneksi.
+#
+# LOKASI DATA
+# Gambar Ulasan PLN Mobile/HTML/     : HTML sumber Part 1, 2, 3.
+# Gambar Ulasan PLN Mobile/Part 1/   : PNG Part 1.
+# Gambar Ulasan PLN Mobile/Part 2/   : PNG Part 2.
+# Gambar Ulasan PLN Mobile/Part 3/   : PNG Part 3.
+# Hasil Ekspor/                     : arsip ZIP hasil ekspor.
+# Nama PNG harus mengikuti exporter, misalnya 02 - Nadia Khairunnisa.png.
+# Progres dan antrean JSON disimpan otomatis di folder utama proyek.
+#
+# MEMBUAT GAMBAR
+# .venv\Scripts\python.exe export_reviews.py
+# Perintah tanpa argumen mengekspor seluruh part ke folder PNG standar.
+# Untuk satu part:
+# .venv\Scripts\python.exe export_reviews.py "Gambar Ulasan PLN Mobile/HTML/Rekap Google Reviews PLN Mobile - 48 Ulasan Part 3.html"
+# Menu BAT juga menawarkan pembuatan gambar jika ada PNG yang belum tersedia.
+# Tidak perlu menyalin foto ke folder lain setelah ekspor.
+#
+# CATATAN GITHUB
+# Commit kode, requirements.txt, panduan, HTML sumber, dan .gitkeep.
+# .gitignore mengecualikan .venv, gambar hasil ekspor, ZIP, dan progres lokal.
+# Pengguna baru membuat ulang PNG dari HTML, sehingga repositori tetap kecil.
+# Jika file terlanjur dilacak Git, .gitignore tidak menghapus riwayat Git-nya.
+# Part 3 adalah data anonim/parafrase dari HTML lokal, bukan bukti ulasan asli.
+#
+# PENGUJIAN TANPA MENGIRIM FORM
+# .venv\Scripts\python.exe -m unittest -q test_isi_form_ulasan.py
