@@ -10,10 +10,36 @@ from isi_form_ulasan import (Progress, confirm_status, image_attached, load_revi
                              insert_uploaded_file, wait_for_attachment)
 
 
+class SourceDiscoveryTests(unittest.TestCase):
+    def test_filename_can_change_without_changing_part_number(self):
+        import project_paths
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            source = root / 'Rekap Reviews PLN Mobile - 100 Ulasan Part 1.html'
+            source.touch()
+            with patch.object(project_paths, 'HTML_ROOT', root):
+                self.assertEqual(project_paths.source_for_part(1), source)
+                (root / 'Other Part 1.html').touch()
+                with self.assertRaisesRegex(ValueError, 'lebih dari satu'):
+                    project_paths.source_for_part(1)
+
+    def test_new_markup_and_missing_other_parts(self):
+        with tempfile.TemporaryDirectory() as d:
+            source = Path(d) / 'sample.html'
+            source.write_text('<div class="rc"><div class="nm">Nama Tes</div><span class="st">' + '\u2605'*5 + '</span><span class="dt">18/11/26</span><div class="tx">Baris satu\n baris dua</div></div>', encoding='utf-8')
+            with patch('siapkan_data_form.source_for_part', side_effect=[source, FileNotFoundError(), FileNotFoundError()]):
+                reviews = load_reviews(validate_images=False)
+            self.assertEqual(len(reviews), 1)
+            self.assertEqual(reviews[0]['username'], 'Nama Tes')
+            self.assertEqual(reviews[0]['ulasan'], 'Baris satu baris dua')
+            self.assertEqual(reviews[0]['tanggal_ulasan'], '2026-11-18')
+
+
 class BatchTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.reviews = load_reviews()
+        # Batas fixture tetap 48 agar pengujian rentang tidak mengikuti ukuran data pengguna.
+        cls.reviews = [r for r in load_reviews() if r['nomor'] <= 48]
 
     def setUp(self):
         self.directory = tempfile.TemporaryDirectory()
@@ -33,7 +59,7 @@ class BatchTests(unittest.TestCase):
         from siapkan_data_form import ROOT
         selected = select_reviews(self.reviews, '3', '1-48')
         self.assertEqual(len(selected), 48)
-        self.assertEqual(selected[0]['username'], 'kopi_sore')
+        self.assertEqual(selected[0]['username'], next(r['username'] for r in self.reviews if r['part'] == 3))
         self.assertTrue(all((ROOT / r['capture_ulasan']).is_file() for r in selected))
 
     def test_invalid_ranges(self):
@@ -56,10 +82,21 @@ class BatchTests(unittest.TestCase):
         self.assertFalse(self.queue_file.exists())
         self.assertFalse(self.progress.path.exists())
 
-    def test_source_change_is_rejected(self):
-        self.prepare('1')
-        with self.assertRaises(ValueError):
-            prepare_batch([dict(self.reviews[0], ulasan='berubah')], self.progress, self.queue_file)
+    def test_source_change_gets_separate_history_and_original_stays_sent(self):
+        original = self.prepare('1')
+        self.progress.update(original[0]['id'], status='terkirim')
+        changed = dict(self.reviews[0], ulasan='berubah')
+        new = prepare_batch([changed], self.progress, self.queue_file)
+        self.assertNotEqual(new[0]['id'], original[0]['id'])
+        self.assertEqual(self.progress.items[new[0]['id']]['status'], 'disiapkan')
+        self.assertEqual(self.progress.items[original[0]['id']]['status'], 'terkirim')
+        self.progress.update(new[0]['id'], status='terkirim')
+        repeated = prepare_batch([changed], self.progress, self.queue_file)
+        self.assertEqual(repeated[0]['id'], new[0]['id'])
+        self.assertEqual(self.progress.items[repeated[0]['id']]['status'], 'terkirim')
+        restored = self.prepare('1')
+        self.assertEqual(restored[0]['id'], original[0]['id'])
+        self.assertEqual(self.progress.items[restored[0]['id']]['status'], 'terkirim')
 
     def test_legacy_path_migration_preserves_delivery_status(self):
         import hashlib
@@ -76,6 +113,16 @@ class BatchTests(unittest.TestCase):
         self.assertEqual(entry['foto'], review['capture_ulasan'])
         self.assertNotEqual(entry['signature'], signature)
         self.assertEqual(queue[0]['unit_up3'], 'Malino')
+
+    def test_reexported_image_does_not_reset_sent_status(self):
+        original = self.prepare('1')
+        self.progress.update(original[0]['id'], status='terkirim')
+        image = Path(self.directory.name) / 'new-render.png'
+        image.write_bytes(b'new image bytes')
+        review = dict(self.reviews[0], capture_ulasan=str(image))
+        repeated = prepare_batch([review], self.progress, self.queue_file)
+        self.assertEqual(repeated[0]['id'], original[0]['id'])
+        self.assertEqual(self.progress.items[repeated[0]['id']]['status'], 'terkirim')
 
     def test_corrupt_progress_is_not_silently_reset(self):
         self.progress.path.write_text('{invalid', encoding='utf-8')
@@ -183,7 +230,7 @@ class BatchTests(unittest.TestCase):
 
     @patch('builtins.print')
     def test_interactive_select_all_three_parts(self, output):
-        with patch('builtins.input', side_effect=['4', 'semua']):
+        with patch('isi_form_ulasan.load_reviews', return_value=self.reviews), patch('builtins.input', side_effect=['4', 'semua']):
             self.assertEqual(len(choose_reviews(self.reviews, self.progress)), 144)
 
     @patch('builtins.print')
