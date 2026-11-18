@@ -25,7 +25,7 @@ playwright==1.64.1
 # Pilih Allow jika Chrome meminta koneksi.
 #
 # LOKASI DATA
-# Gambar Ulasan PLN Mobile/HTML/     : HTML sumber Part 1, 2, 3.
+# Gambar Ulasan PLN Mobile/HTML/     : HTML sumber berakhiran Part N.html.
 # Gambar Ulasan PLN Mobile/Part 1/   : PNG Part 1.
 # Gambar Ulasan PLN Mobile/Part 2/   : PNG Part 2.
 # Gambar Ulasan PLN Mobile/Part 3/   : PNG Part 3.

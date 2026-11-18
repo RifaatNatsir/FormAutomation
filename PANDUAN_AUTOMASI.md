@@ -4,7 +4,7 @@
 
 Klik dua kali **`MULAI_AUTOMASI.bat`** di folder proyek ini. File BAT memakai skrip Python dan folder gambar yang ada di sebelahnya; jangan dipindahkan sendiri ke folder lain.
 
-1. Pilih 1 untuk Part 1, 2 untuk Part 2, 3 untuk Part 3 (anonim/parafrase), atau 4 untuk semua part.
+1. Ketik nomor part yang ditampilkan, misalnya `4` untuk Part 4, atau ketik `semua` untuk memilih semua part.
 2. Daftar nomor foto, nama reviewer, dan status akan muncul.
 3. Masukkan pilihan seperti `2-7, 10-15, 18, 19-25`, atau ketik `semua`.
 4. Seluruh data pilihan disiapkan dan disimpan terlebih dahulu.
@@ -14,7 +14,7 @@ Pilihan **0** keluar dari program. Antrean yang sudah disiapkan dan progres teta
 
 Saat mulai pengisian, menu otomatis menghubungkan Agent Browser dan membuka tab formulir baru. Chrome biasa harus sudah terbuka, login Google, dan mengaktifkan Remote Debugging di `chrome://inspect/#remote-debugging`. Pilih **Allow** jika Chrome meminta izin koneksi.
 
-Menu mempertahankan retry unggah maksimal 3 percobaan, melewati foto yang sudah terkirim, dan berhenti bila hasil pengiriman perlu diperiksa. Python 3 dan Agent Browser yang sudah terpasang tetap digunakan.
+Menu mempertahankan retry unggah maksimal 3 percobaan dan melewati foto berstatus `terkirim` atau `perlu_cek`. Python 3 dan Agent Browser yang sudah terpasang tetap digunakan.
 
 ## Perintah terminal (opsional)
 
@@ -26,7 +26,7 @@ Jalankan perintah PowerShell dari folder proyek ini. Satu proses bot mengerjakan
 python isi_form_ulasan.py --part 1 --nomor "2-7, 10-15, 18, 19-25" --siapkan
 ```
 
-Contoh ini memilih **20 foto Part 1**. Nomor yang berulang hanya dimasukkan sekali dan diproses menurut urutan nomor. Setiap part memiliki nomor 1–48. Gunakan `--part 2` atau `--part 3` untuk part terkait, atau `--part semua` untuk menerapkan nomor yang sama pada ketiga part. Part 3 berisi versi anonim/parafrase dari HTML lokal.
+Contoh ini memilih **20 foto Part 1**. Nomor yang berulang hanya dimasukkan sekali dan diproses menurut urutan nomor. Rentang nomor mengikuti jumlah kartu pada masing-masing part. Gunakan `--part 5` untuk Part 5 atau `--part semua` untuk memilih nomor tersebut dari seluruh part yang tersedia.
 
 Skrip memeriksa seluruh data dan gambar pilihan sebelum membuka browser. Hasilnya:
 
@@ -86,7 +86,7 @@ Pencocokan ID memakai atribut `data-id` kartu file, bukan informasi thumbnail. F
 
 Keberhasilan baru diakui setelah nama file dan tombol **Buka file** muncul pada lampiran formulir. Bila ketiga percobaan tetap gagal, foto ditandai `gagal` dan batch melanjutkan foto berikutnya. Pesan error menyebutkan tahap yang bermasalah.
 
-Tombol **Kirim tidak diulang otomatis**. Jika konfirmasi tidak terlihat, proses berhenti dengan status `perlu_cek`. Ini juga berlaku jika formulir memakai pesan konfirmasi khusus yang berbeda dari pesan standar Indonesia/Inggris.
+Jika konfirmasi **Kirim** tidak terlihat, foto ditandai `perlu_cek` dan batch melanjutkan foto berikutnya. Saat batch dijalankan ulang, bot melewati foto itu sampai pengguna mencatat hasil pemeriksaan manual. Ini juga berlaku jika formulir memakai pesan konfirmasi khusus yang berbeda dari pesan standar Indonesia/Inggris.
 
 Setelah memeriksa bukti pengiriman, catat hasilnya untuk nomor terkait:
 
@@ -112,7 +112,7 @@ Sumber HTML dibaca dari folder proyek atau `Gambar Ulasan PLN Mobile`. Gambar di
 
 ## Struktur folder yang digunakan semua skrip
 
-Nama HTML boleh berubah, misalnya `Rekap Reviews PLN Mobile - 100 Ulasan Part 1.html`. Syaratnya nama berakhiran `Part 1.html`, `Part 2.html`, atau `Part 3.html`, dan hanya ada satu sumber aktif per part di folder HTML. Jumlah ulasan dibaca dari kartu yang benar-benar ada, bukan angka pada nama file. Format kelas HTML lama (`review-card`, `name`, `stars`, `date`, `review-text`) dan format ringkas (`rc`, `nm`, `st`, `dt`, `tx`) sama-sama didukung. Part yang tidak tersedia dilewati.
+Simpan satu HTML sumber per part di folder `HTML` dengan nama berakhiran `Part N.html`, dengan `N` berupa nomor positif, misalnya `Rekap Reviews PLN Mobile - 100 Ulasan Part 5.html`. BAT dan exporter mendeteksi part yang tersedia saat dijalankan. Jumlah ulasan mengikuti kartu di dalam HTML. Format kelas HTML lama (`review-card`, `name`, `stars`, `date`, `review-text`) dan format ringkas (`rc`, `nm`, `st`, `dt`, `tx`) didukung.
 
 ```text
 FormAutomation/
@@ -120,7 +120,7 @@ FormAutomation/
   requirements.txt
   project_paths.py
   Gambar Ulasan PLN Mobile/
-    HTML/        # Semua HTML sumber Part 1, Part 2, dan Part 3
+    HTML/        # HTML sumber untuk semua part
     Part 1/      # PNG Part 1
     Part 2/      # PNG Part 2
     Part 3/      # PNG Part 3
