@@ -10,12 +10,14 @@ PARTS = (1, 2, 3)
 
 
 def source_for_part(part):
-    count = 48 if part == 3 else 50
-    name = f'Rekap Google Reviews PLN Mobile - {count} Ulasan Part {part}.html'
     for folder in (HTML_ROOT, IMAGE_ROOT, ROOT):
-        if (folder / name).is_file():
-            return folder / name
-    raise FileNotFoundError(f'Simpan HTML sumber di {HTML_ROOT / name}')
+        matches = [path for path in folder.glob('*.html')
+                   if re.search(rf'\bPart\s+{part}\.html$', path.name, re.I)]
+        if len(matches) > 1:
+            raise ValueError(f'Ada lebih dari satu HTML Part {part} di {folder}. Sisakan satu sumber aktif untuk part ini.')
+        if matches:
+            return matches[0]
+    raise FileNotFoundError(f'Simpan HTML sumber dengan nama berakhiran Part {part}.html di {HTML_ROOT}')
 
 
 def image_name(number, username):

@@ -7,6 +7,10 @@ __pycache__/
 *.zip
 *.tmp
 /Gambar Ulasan PLN Mobile/Part */*.png
+/Gambar Ulasan PLN Mobile/**/*.png
+/Gambar Ulasan PLN Mobile/**/*.jpg
+/Gambar Ulasan PLN Mobile/**/*.jpeg
+/Gambar Ulasan PLN Mobile/**/*.webp
 /Hasil Ekspor/*
 !/Hasil Ekspor/.gitkeep
 /antrean_ulasan_form.json

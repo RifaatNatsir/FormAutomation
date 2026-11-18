@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Reviews</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #202124;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      font-family: 'Google Sans', Roboto, Arial, sans-serif;
+      gap: 2px;
+    }
+
+    .rc {
+      background: #202124;
+      padding: 16px 16px 20px 16px;
+      width: 500px;
+      border-bottom: 1px solid #3c4043;
+    }
+
+    .rc:last-child {
+      border-bottom: none;
+    }
+
+    .hd {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .lf {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .av {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      font-weight: 500;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .nm {
+      color: #e8eaed;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    .mt {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 2px;
+    }
+
+    .st {
+      color: #4285F4;
+      font-size: 15px;
+      letter-spacing: 1px;
+    }
+
+    .dt {
+      color: #9aa0a6;
+      font-size: 12px;
+    }
+
+    .do {
+      color: #9aa0a6;
+      font-size: 20px;
+      cursor: pointer;
+      padding: 0 4px;
+    }
+
+    .tx {
+      color: #e8eaed;
+      font-size: 14px;
+      line-height: 1.6;
+      margin-top: 10px;
+      padding-left: 52px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#1a73e8;">A</div>
+        <div>
+          <div class="nm">Abi Santoso</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Beli token prabayar 50 ribu langsung masuk dalam 10 detik setelah bayar. Tidak perlu ke Indomaret
+      lagi tengah malam. Hemat waktu dan tenaga banget!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#c62828;">B</div>
+        <div>
+          <div class="nm">Beti Rahmawati</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Tagihan pascabayar bulan ini naik, langsung cek detail pemakaian per hari. Ketahuan karena banyak
+      tamu menginap minggu lalu. Fitur analisis pemakaiannya sangat membantu!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#2e7d32;">C</div>
+        <div>
+          <div class="nm">Cipto Waluyo</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Listrik mati total se-blok gara-gara pohon tumbang. Langsung lapor darurat dan petugas datang dalam
+      45 menit. Respons tim lapangannya luar biasa cepat dan sigap!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#7b1fa2;">D</div>
+        <div>
+          <div class="nm">Dewi Anggraini</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Pasang listrik baru untuk rumah KPR saya beres diajukan online. Semua dokumen diunggah dari HP saat
+      jam makan siang. Tidak perlu izin cuti kerja untuk urus ke kantor!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#e65100;">E</div>
+        <div>
+          <div class="nm">Edi Purnomo</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Jadwal pemadaman bergilir tersedia akurat per RT. Sudah bisa siapkan laptop charge penuh sebelum
+      listrik padam saat WFH. Tidak ada lagi pekerjaan terganggu tiba-tiba!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#00695c;">F</div>
+        <div>
+          <div class="nm">Fitri Yuliana</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Tambah daya dari 900VA ke 2200VA untuk rumah yang baru direnovasi beres lewat sini. Prosesnya cepat
+      dan harganya sesuai simulasi. Tidak ada biaya kejutan di luar estimasi!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#0277bd;">G</div>
+        <div>
+          <div class="nm">Gunadi Wibowo</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Grafik kWh harian menunjukkan lonjakan setiap hari Minggu. Ternyata mesin cuci dan setrika dipakai
+      bersamaan. Sekarang dijadwal bergantian dan tagihan turun lumayan!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#558b2f;">H</div>
+        <div>
+          <div class="nm">Haryanto Budiman</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Sebagai pengelola 20 unit ruko, bisa pantau semua meteran dari satu akun sangat efisien. Tagihan
+      masing-masing unit langsung bisa dibayarkan sekaligus. Sangat membantu sekali!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#ad1457;">I</div>
+        <div>
+          <div class="nm">Ida Farida</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Peringatan token menipis muncul saat tinggal 20 kWh. Langsung top up meski sedang di kantor. Pulang
+      ke rumah listrik masih nyala normal. Fitur penyelamat momen penting!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#37474f;">J</div>
+        <div>
+          <div class="nm">Jatmiko Susilo</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Fitur kalkulator perkiraan biaya pasang listrik baru untuk kontrakan baru sangat berguna. Bisa
+      hitung budget jauh sebelum pembangunan dimulai. Perencanaan jadi lebih matang!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#1565c0;">K</div>
+        <div>
+          <div class="nm">Komarudin Effendi</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Bayar tagihan listrik pakai virtual account BCA selesai dalam hitungan detik. Langsung dapat bukti
+      bayar digital dan tersimpan otomatis di riwayat. Sangat cepat dan mudah!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#4a148c;">L</div>
+        <div>
+          <div class="nm">Lina Herlina</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Proses balik nama setelah warisan dari almarhum ayah sangat mudah. Cukup upload surat kematian dan
+      surat waris. Selesai tanpa harus antri berjam-jam di kantor. Terima kasih!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#2e7d32;">M</div>
+        <div>
+          <div class="nm">Miftahul Huda</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Sebagai teknisi listrik, fitur cek tarif golongan per kVA sering saya pakai saat survey lapangan.
+      Data tarif selalu update dan bisa jadi acuan penawaran harga ke klien!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#e65100;">N</div>
+        <div>
+          <div class="nm">Nurul Hidayah</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Riwayat tagihan 2 tahun terakhir bisa langsung diekspor ke PDF. Sangat berguna saat urus kredit
+      motor dan bank minta bukti pembayaran tagihan rutin. Fitur yang sangat membantu!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#880e4f;">O</div>
+        <div>
+          <div class="nm">Oman Suherman</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Lapor pengaduan listrik sering byar pet di kampung kami. Dapat nomor tiket dan setelah investigasi
+      ternyata trafo sudah tua. Langsung diganti dan listrik kini stabil. Lega!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#006064;">P</div>
+        <div>
+          <div class="nm">Prayitno Hadi</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Info kontak call center 123 tersedia langsung di aplikasi. Saat butuh bicara langsung dengan
+      petugas, tinggal klik tombol telepon. Tidak perlu cari nomor di Google lagi!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#1b5e20;">Q</div>
+        <div>
+          <div class="nm">Qodir Mansyur</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Daftar dan verifikasi akun hanya butuh 3 menit. Langsung bisa beli token dan bayar tagihan hari itu
+      juga. Proses onboarding tercepat dibanding aplikasi utility lainnya!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#0d47a1;">R</div>
+        <div>
+          <div class="nm">Ruslan Hidayat</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Fitur auto-bayar aktif sudah 18 bulan. Tagihan selalu terbayar tepat waktu tanpa perlu saya ingat.
+      Tidak pernah sekalipun kena denda dan listrik tidak pernah diputus. Mantap!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#bf360c;">S</div>
+        <div>
+          <div class="nm">Suci Rahayu</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Sebagai ibu single parent, semua urusan listrik kini bisa saya tangani sendiri. Tidak perlu
+      merepotkan saudara atau tetangga lagi. Aplikasi yang benar-benar memberdayakan!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#558b2f;">T</div>
+        <div>
+          <div class="nm">Toni Kuswanto</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Stand meter listrik bisa dicek setiap saat dari HP. Pernah curiga tagihan tidak sesuai, cek sendiri
+      ternyata memang ada selisih. Langsung lapor dan diselesaikan dengan baik!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#c62828;">U</div>
+        <div>
+          <div class="nm">Umi Kulsum</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Kirim token listrik ke adik yang kuliah di luar pulau jadi gampang banget. Tidak perlu transfer uang
+      dulu, langsung beli atas nama meteran kos adik. Token masuk seketika!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#37474f;">V</div>
+        <div>
+          <div class="nm">Vivi Susanti</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Status pengaduan bisa dilacak real-time dari menu riwayat laporan. Tahu persis sudah di tahap mana,
+      siapa teknisi yang menangani, dan kapan estimasi selesai. Transparan sekali!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#1a237e;">W</div>
+        <div>
+          <div class="nm">Widodo Purnomo</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Sambung listrik sementara untuk acara sunatan anak bisa diajukan seminggu sebelumnya. Petugas datang
+      tepat waktu dan kapasitas daya cukup untuk semua tenda dan sound system!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#4a148c;">X</div>
+        <div>
+          <div class="nm">Xenia Anggraini</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Estimasi tagihan akhir bulan yang muncul tanggal 20 selalu akurat. Bisa alokasikan anggaran bayar
+      listrik dari jauh-jauh hari. Membantu sekali untuk perencanaan keuangan keluarga!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#00695c;">Y</div>
+        <div>
+          <div class="nm">Yanto Setiawan</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Sebagai sopir truk yang sering di jalan, bisa bayar listrik rumah dari mana saja itu sangat
+      menolong. Istri tidak perlu keluar rumah cuma untuk bayar tagihan bulanan. Praktis!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#558b2f;">Z</div>
+        <div>
+          <div class="nm">Zainal Abidin</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Laporan lampu jalan mati di gang depan rumah direspons cepat. Besok paginya sudah ada petugas yang
+      datang dan memperbaiki. Keamanan lingkungan jadi lebih terjaga. Terima kasih!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#1a73e8;">AB</div>
+        <div>
+          <div class="nm">Abdurrahman Wahid</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Fitur pengamanan berlapis pakai PIN 6 digit dan biometrik sangat meyakinkan. Meski HP dipinjam anak,
+      tidak khawatir ada transaksi tidak sengaja. Keamanannya sudah sangat bagus!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#d32f2f;">BB</div>
+        <div>
+          <div class="nm">Bambang Nugroho</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Sebagai mahasiswa semester akhir yang tinggal di kos, beli token Rp20.000 saat kantong tipis itu
+      sangat membantu. Nominal kecil pun bisa dan prosesnya sama cepatnya.助かります!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#2e7d32;">CB</div>
+        <div>
+          <div class="nm">Cahya Purnama</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Tagihan listrik warung kelontong saya selalu tepat waktu terbayar berkat auto-bayar. Tidak pernah
+      ada kejadian listrik diputus di tengah jam buka warung. Usaha jalan terus!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#7b1fa2;">DB</div>
+        <div>
+          <div class="nm">Dian Novita Sari</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Pernah ada tagihan tidak wajar, langsung ajukan keberatan lewat menu pengaduan tagihan. Prosesnya
+      jelas, ada investigasi, dan tagihan dikoreksi sesuai pemakaian sebenarnya. Adil!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#e65100;">EB</div>
+        <div>
+          <div class="nm">Eko Budiyanto</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Info program subsidi listrik 450VA tersedia jelas di menu informasi. Jadi tahu syarat dan cara
+      daftarnya. Membantu masyarakat kurang mampu di sekitar saya untuk ajukan subsidi!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#00695c;">FB</div>
+        <div>
+          <div class="nm">Fauziah Handayani</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Token listrik bisa dibeli untuk nomor meteran siapapun. Pernah belikan untuk tetangga yang sedang
+      sakit dan tidak bisa keluar rumah. Fitur berbagi yang sangat manusiawi!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#0277bd;">GB</div>
+        <div>
+          <div class="nm">Gregorius Santoso</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Layanan chat bantuan aktif dan responsif bahkan di hari libur nasional. Pernah ada masalah di hari
+      raya Idul Fitri dan langsung direspons. Pelayanan tanpa henti yang luar biasa!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#558b2f;">HB</div>
+        <div>
+          <div class="nm">Hendri Kurniawan</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Fitur notifikasi real-time saat transaksi berhasil membuat saya langsung tahu token sudah dibeli.
+      Tidak perlu refresh atau nunggu lama. Konfirmasi instan yang sangat meyakinkan!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#c62828;">IB</div>
+        <div>
+          <div class="nm">Imam Syafi'i</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Sebagai takmir masjid, pengajuan tambah daya untuk AC masjid berjalan lancar. Semua proses online
+      dan jamaah bisa sholat nyaman dengan AC setelah daya berhasil ditingkatkan!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#37474f;">JB</div>
+        <div>
+          <div class="nm">Jumadi Rahardjo</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Dashboard menampilkan perbandingan tagihan bulan ini vs bulan lalu secara langsung. Jadi tahu apakah
+      pemakaian naik atau turun tanpa perlu hitung manual. Visualisasi yang bagus!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#1565c0;">KB</div>
+        <div>
+          <div class="nm">Kristanto Nugroho</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Proses SLO untuk instalasi listrik rumah baru bisa diajukan dan dilacak statusnya dari sini. Tidak
+      perlu bolak-balik cari info ke kontraktor. Semua terintegrasi dengan baik!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#4a148c;">LB</div>
+        <div>
+          <div class="nm">Laila Fitriani</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Bayar tagihan listrik kos bulanan sekarang cukup dari kamar sambil tiduran. Tidak perlu minta izin
+      keluar ke pemilik kos. Hemat waktu dan lebih nyaman. Sangat memuaskan!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#2e7d32;">MB</div>
+        <div>
+          <div class="nm">Munawar Siddiq</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Fitur pengaduan meter listrik terbakar dilaporkan dan ditangani dalam hitungan jam. Petugas
+      profesional dan langsung ganti meteran baru di hari yang sama. Sangat responsif!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#e65100;">NB</div>
+        <div>
+          <div class="nm">Nanda Pratiwi</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Sebagai warga baru pindahan dari luar kota, semua proses administrasi listrik bisa diselesaikan
+      tanpa perlu kenal orang dalam. Sistemnya sudah sangat baik dan merata!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#880e4f;">OB</div>
+        <div>
+          <div class="nm">Oktavian Putra</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Tips hemat energi di menu informasi sangat berguna. Sudah coba matikan perangkat standby di malam
+      hari dan tagihan bulan ini turun Rp30.000. Lumayan untuk isi bensin!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#006064;">PB</div>
+        <div>
+          <div class="nm">Purnawati Suseno</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Update terbaru membuat tampilan makin fresh dan navigasi makin intuitif. Tombol beli token dan bayar
+      tagihan lebih mudah ditemukan. Tim developernya terus kerja keras, salut!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#1b5e20;">QB</div>
+        <div>
+          <div class="nm">Qomariyah Nisa</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Beli token untuk 5 meteran kos-kosan sekaligus tanpa keluar rumah itu benar-benar menghemat. Dulu
+      harus jalan ke minimarket 5 kali. Sekarang cukup 5 menit dari sofa. Luar biasa!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#0d47a1;">RB</div>
+        <div>
+          <div class="nm">Ridwan Kamil S.</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Fitur lokasi loket pembayaran dan agen terdekat di peta sangat membantu saat HP kehabisan baterai
+      dan harus bayar manual. Langsung tahu loket mana yang paling dekat!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#bf360c;">SB</div>
+        <div>
+          <div class="nm">Suharno Basuki</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Sebagai pensiunan PNS, semua urusan listrik kini bisa saya tangani sendiri. Anak-anak tidak perlu
+      pulang kampung hanya untuk bantu bayar listrik. Sudah mandiri di usia 65 tahun!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#558b2f;">TB</div>
+        <div>
+          <div class="nm">Taufik Rahmat</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Fitur pengaduan kabel listrik menjuntai berbahaya di jalan direspons cepat. Demi keselamatan warga,
+      petugas langsung datang perbaiki. Layanan yang peduli keselamatan publik!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#c62828;">UB</div>
+        <div>
+          <div class="nm">Umar Faruq</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Struk digital bisa langsung dikirim ke grup WhatsApp keluarga sebagai bukti sudah bayar tagihan
+      rumah orang tua. Tidak perlu foto struk kertas dan kirim manual. Praktis!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#37474f;">VB</div>
+        <div>
+          <div class="nm">Vera Trisnawati</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Aplikasinya stabil di sinyal 3G sekalipun. Tinggal di daerah pinggiran kota dengan sinyal terbatas
+      tapi masih bisa beli token dan bayar tagihan tanpa masalah. Luar biasa!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#1a237e;">WB</div>
+        <div>
+          <div class="nm">Wibowo Santoso</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Simulasi perkiraan tagihan saat mau beli kulkas baru sangat membantu keputusan pembelian. Tahu
+      kira-kira kenaikan tagihan per bulan sebelum beli. Fitur yang sangat cerdas!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#4a148c;">XB</div>
+        <div>
+          <div class="nm">Xiomara Kartika</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Sebagai kontraktor bangunan, pengajuan pasang listrik baru untuk puluhan proyek klien bisa dikelola
+      dari satu akun. Jauh lebih efisien dari cara manual yang dulu memakan waktu!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#00695c;">YB</div>
+        <div>
+          <div class="nm">Yuliana Safitri</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Fitur pengingat jatuh tempo tagihan H-5, H-3, dan H-1 sangat detail. Tidak ada alasan lupa bayar
+      dengan pengingat sebanyak itu. Tagihan selalu lunas tepat waktu setiap bulan!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#558b2f;">ZB</div>
+        <div>
+          <div class="nm">Zulfikar Habibie</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Sebagai warga di pelosok NTT, bisa urus administrasi listrik dari kampung tanpa harus ke kota itu
+      benar-benar kemajuan. Terima kasih telah menjangkau seluruh pelosok Indonesia!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#1a73e8;">AC</div>
+        <div>
+          <div class="nm">Agung Prabowo</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Token listrik 20 digit langsung bisa disalin dari notifikasi dan dimasukkan ke meteran. Tidak perlu
+      ketik ulang panjang-panjang. Fitur salin otomatis yang sangat memudahkan!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#d81b60;">BC</div>
+        <div>
+          <div class="nm">Bella Rahmadhani</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Pernah salah bayar tagihan ke nomor meteran orang lain. Langsung hubungi bantuan dan dana balik
+      dalam 2 jam kerja. Penanganan keluhan yang cepat dan profesional. Puas!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#2e7d32;">CC</div>
+        <div>
+          <div class="nm">Chandra Irawan</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Fitur pengaduan instalasi listrik tidak sesuai standar SNI ditangani serius. Petugas datang inspeksi
+      dan memberikan rekomendasi perbaikan yang jelas. Pelayanan yang profesional!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#7b1fa2;">DC</div>
+        <div>
+          <div class="nm">Dono Kusumo</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Sebagai guru SD di daerah terpencil, beli token listrik sekolah dari HP sudah mengubah cara kerja
+      kami. Tidak perlu kirim penjaga sekolah ke kota hanya untuk beli token listrik!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#e65100;">EC</div>
+        <div>
+          <div class="nm">Erna Susanti</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Fitur berbagi info jadwal pemadaman ke kontak WhatsApp sangat berguna untuk kasih tahu tetangga.
+      Tinggal screenshot dan kirim ke grup RT. Fungsi berbagi yang sangat berguna!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#00695c;">FC</div>
+        <div>
+          <div class="nm">Firman Alamsyah</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Sebagai pengelola gedung perkantoran, semua meteran 3 lantai terpantau dari satu akun. Tagihan
+      langsung bisa dibayar begitu nominal muncul. Manajemen listrik gedung jadi mudah!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#0277bd;">GC</div>
+        <div>
+          <div class="nm">Gatot Nugroho</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Info pemberitahuan pemeliharaan jaringan listrik tersedia H-3 sebelum pelaksanaan. Bisa siapkan
+      power bank dan tidak terkejut saat listrik padam untuk pemeliharaan rutin. Informatif!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#558b2f;">HC</div>
+        <div>
+          <div class="nm">Hastuti Rahayu</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Bayar tagihan listrik rumah orang tua setiap bulan dari kota tempat saya bekerja sangat mudah. Orang
+      tua di kampung tidak perlu keluar rumah sama sekali. Sangat membahagiakan!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#c62828;">IC</div>
+        <div>
+          <div class="nm">Irfandi Maulana</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Fitur pengaduan listrik masuk air setelah banjir ditangani cepat dan aman. Petugas profesional yang
+      tahu prosedur keselamatan. Sangat tepat dilaporkan lewat jalur resmi ini!</div>
+  </div>
+
+  <div class="rc">
+    <div class="hd">
+      <div class="lf">
+        <div class="av" style="background:#37474f;">JC</div>
+        <div>
+          <div class="nm">Jono Prasetyo</div>
+          <div class="mt"><span class="st">★★★★★</span><span class="dt">18/11/26</span></div>
+        </div>
+      </div>
+      <div class="do">⋮</div>
+    </div>
+    <div class="tx">Semua fitur yang dibutuhkan untuk urusan listrik rumah tangga ada di sini. Tidak perlu aplikasi
+      lain, tidak perlu ke kantor, tidak perlu telepon. Satu aplikasi untuk semua kebutuhan!</div>
+  </div>
+
+</body>
+
+</html>

@@ -30,7 +30,12 @@ def main(argv=None):
     else:
         jobs = []
         for part in PARTS:
-            jobs.append((source_for_part(part), OUTPUT / f'Part {part}'))
+            try:
+                jobs.append((source_for_part(part), OUTPUT / f'Part {part}'))
+            except FileNotFoundError:
+                continue
+        if not jobs:
+            parser.error('Tidak ada HTML sumber di Gambar Ulasan PLN Mobile/HTML.')
         archive = EXPORT_ROOT / 'Gambar Ulasan PLN Mobile.zip'
         archive_root = OUTPUT
     for source, _ in jobs:
@@ -47,13 +52,13 @@ def main(argv=None):
             folder.mkdir(parents=True, exist_ok=True)
             page.goto(source.as_uri())
             page.evaluate('document.fonts.ready')
-            cards = page.locator('.review-card')
-            expected = source.read_text(encoding='utf-8').count('<div class="review-card">')
+            cards = page.locator('.review-card, .rc')
+            expected = len(re.findall(r'<div\s+class="(?:review-card|rc)"\s*>', source.read_text(encoding='utf-8')))
             assert cards.count() == expected and expected > 0
             for index in range(cards.count()):
                 card = cards.nth(index)
-                name = card.locator('.name').inner_text().strip()
-                assert card.locator('.review-text').inner_text().strip()
+                name = card.locator('.name, .nm').inner_text().strip()
+                assert card.locator('.review-text, .tx').inner_text().strip()
                 target = folder / image_name(index + 1, name)
                 card.screenshot(path=str(target), animations='disabled')
                 with Image.open(target) as img:

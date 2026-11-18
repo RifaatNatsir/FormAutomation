@@ -11,22 +11,25 @@ from project_paths import ROOT, PARTS, source_for_part, image_for_review
 def load_reviews(validate_images=True):
     reviews = []
     for part in PARTS:
-        source = source_for_part(part)
-        cards = source.read_text(encoding='utf-8').split('<div class="review-card">')[1:]
+        try:
+            source = source_for_part(part)
+        except FileNotFoundError:
+            continue
+        cards = re.split(r'<div\s+class="(?:review-card|rc)"\s*>', source.read_text(encoding='utf-8'))[1:]
         if not cards:
             raise ValueError(f'Tidak ada kartu ulasan pada {source.name}')
         for number, card in enumerate(cards, 1):
             def field(css_class):
-                match = re.search(r'class="' + css_class + r'"[^>]*>(.*?)</', card, re.S)
+                match = re.search(r'class="(?:' + css_class + r')"[^>]*>(.*?)</', card, re.S)
                 if not match:
                     raise ValueError(f'Part {part}, ulasan {number}: {css_class} tidak ditemukan')
-                return unescape(match.group(1)).strip()
+                return ' '.join(unescape(match.group(1)).split())
 
-            name = field('name')
+            name = field('name|nm')
             image = image_for_review(part, number, name).relative_to(ROOT)
-            rating = field('stars').count('★')
-            date = datetime.strptime(field('date'), '%d/%m/%y').date().isoformat()
-            review = field('review-text')
+            rating = field('stars|st').count('★')
+            date = datetime.strptime(field('date|dt'), '%d/%m/%y').date().isoformat()
+            review = field('review-text|tx')
             assert name and review and 1 <= rating <= 5
             if validate_images:
                 if not (ROOT / image).is_file():
@@ -44,6 +47,8 @@ def load_reviews(validate_images=True):
                 'ulasan': review,
                 'nama_petugas': 'H. T.',
             })
+    if not reviews:
+        raise FileNotFoundError('Tidak ada HTML sumber. Simpan file berakhiran Part 1.html, Part 2.html, atau Part 3.html di Gambar Ulasan PLN Mobile/HTML.')
     assert len({item['capture_ulasan'] for item in reviews}) == len(reviews)
     return reviews
 
