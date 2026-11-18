@@ -59,6 +59,8 @@ Jalankan satu proses bot pada satu waktu dan biarkan tab formulir dikerjakan bot
 
 ## Status dan melanjutkan proses
 
+Jika nomor foto yang sama kini berisi ulasan berbeda (nama, teks, rating, atau tanggal berubah), bot membuat versi progres baru. Versi lama tetap disimpan beserta status pengirimannya. ID versi baru memakai akhiran `@...` pada file progres. Menjalankan ulang versi yang sama tetap melewati respons yang sudah terkirim; mengembalikan data lama juga mengembalikan status versi lama. Pemindahan lokasi atau ekspor ulang PNG saja tidak mereset status versi yang sudah memiliki identitas data.
+
 ```powershell
 python isi_form_ulasan.py --part 1 --nomor "2-7, 10-15, 18, 19-25" --status
 ```
@@ -109,6 +111,8 @@ Pengujian menggunakan browser simulasi untuk alur batch, retry, pemulihan progre
 Sumber HTML dibaca dari folder proyek atau `Gambar Ulasan PLN Mobile`. Gambar dicari di `Gambar Ulasan PLN Mobile/Part N`, lalu `Hasil Ekspor/Part N` (lokasi lama, hanya sebagai cadangan) jika tidak ditemukan di lokasi pertama. Status Part 3 memakai ID `part-3/NN`, terpisah dari riwayat part lainnya.
 
 ## Struktur folder yang digunakan semua skrip
+
+Nama HTML boleh berubah, misalnya `Rekap Reviews PLN Mobile - 100 Ulasan Part 1.html`. Syaratnya nama berakhiran `Part 1.html`, `Part 2.html`, atau `Part 3.html`, dan hanya ada satu sumber aktif per part di folder HTML. Jumlah ulasan dibaca dari kartu yang benar-benar ada, bukan angka pada nama file. Format kelas HTML lama (`review-card`, `name`, `stars`, `date`, `review-text`) dan format ringkas (`rc`, `nm`, `st`, `dt`, `tx`) sama-sama didukung. Part yang tidak tersedia dilewati.
 
 ```text
 FormAutomation/

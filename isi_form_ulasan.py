@@ -30,6 +30,8 @@ def write_json(path, data):
 
 def select_reviews(reviews, part, numbers):
     available = {r['nomor'] for r in reviews if part == 'semua' or r['part'] == int(part)}
+    if not available:
+        raise ValueError(f'HTML untuk Part {part} belum tersedia.')
     selected = set()
     for token in numbers.split(','):
         match = re.fullmatch(r'\s*(\d+)\s*(?:-\s*(\d+)\s*)?', token)
@@ -71,6 +73,30 @@ class Progress:
             raise
 
 
+def review_identity(review):
+    data = {key: value for key, value in review.items() if key != 'capture_ulasan'}
+    return hashlib.sha256(json.dumps(data, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
+
+
+def record_key(review, progress):
+    base = f'part-{review["part"]}/{review["nomor"]:02d}'
+    old = progress.items.get(base)
+    identity = review_identity(review)
+    if not old or old.get('identity') == identity:
+        return base
+    image = ROOT / review['capture_ulasan']
+    if image.is_file():
+        content = image.read_bytes()
+        data = {key: value for key, value in review.items() if key != 'capture_ulasan'}
+        signature = hashlib.sha256(json.dumps(data, sort_keys=True, ensure_ascii=False).encode() + content).hexdigest()
+        legacy = dict(review, capture_ulasan=old['foto'])
+        legacy_signature = hashlib.sha256(json.dumps(legacy, sort_keys=True, ensure_ascii=False).encode() + content).hexdigest()
+        if old.get('signature') in {signature, legacy_signature}:
+            return base
+    # Nomor sama pada kumpulan ulasan baru tidak boleh mewarisi status kumpulan lama.
+    return base + '@' + identity
+
+
 def prepare_batch(selected, progress, queue_path=QUEUE_FILE):
     queue = []
     # Selesaikan validasi semua pilihan sebelum menyimpan progres atau membuka browser.
@@ -81,14 +107,8 @@ def prepare_batch(selected, progress, queue_path=QUEUE_FILE):
         content = image.read_bytes()
         identity = {key: value for key, value in review.items() if key != 'capture_ulasan'}
         signature = hashlib.sha256(json.dumps(identity, sort_keys=True, ensure_ascii=False).encode() + content).hexdigest()
-        key = f'part-{review["part"]}/{review["nomor"]:02d}'
+        key = record_key(review, progress)
         old = progress.items.get(key)
-        if old and old.get('signature') != signature:
-            # Migrasi hash lama hanya jika isi data dan PNG masih persis sama.
-            legacy_review = dict(review, capture_ulasan=old['foto'])
-            legacy_signature = hashlib.sha256(json.dumps(legacy_review, sort_keys=True, ensure_ascii=False).encode() + content).hexdigest()
-            if old.get('signature') != legacy_signature:
-                raise ValueError(f'{key}: sumber berubah sejak dicatat. Periksa riwayat sebelum memproses ulang.')
         queue.append({'id': key, 'review': review, 'signature': signature,
                       'unit_up3': old['unit_up3'] if old else random.choice(UNITS)})
     for item in queue:
@@ -101,7 +121,7 @@ def prepare_batch(selected, progress, queue_path=QUEUE_FILE):
             }
         elif progress.items[key]['status'] == 'mengirim':
             progress.items[key].update(status='perlu_cek', error='Proses sebelumnya terhenti saat pengiriman. Periksa respons di Google Forms.')
-        progress.items[key].update(signature=item['signature'], foto=review['capture_ulasan'])
+        progress.items[key].update(signature=item['signature'], foto=review['capture_ulasan'], identity=review_identity(review))
     write_json(queue_path, {'disiapkan': datetime.now(timezone.utc).isoformat(), 'jumlah': len(queue), 'ulasan': queue})
     progress.save()
     return queue
@@ -391,7 +411,7 @@ def show_reviews(reviews, progress):
     print('\n PART  FOTO  NAMA REVIEWER                     STATUS')
     print(' ' + '-' * 72)
     for review in reviews:
-        key = f'part-{review["part"]}/{review["nomor"]:02d}'
+        key = record_key(review, progress)
         entry = progress.items.get(key, {})
         print(f' {review["part"]:>4}  {review["nomor"]:>4}  {review["username"]:<32}  {entry.get("status", "belum_diproses")}')
         if entry.get('error'):
@@ -410,6 +430,9 @@ def choose_reviews(reviews, progress):
             continue
         part = 'semua' if part == '4' else part
         available = [r for r in reviews if part == 'semua' or r['part'] == int(part)]
+        if not available:
+            print(f'HTML Part {part} belum tersedia. Pilih part lain.')
+            continue
         show_reviews(available, progress)
         print('\nMasukkan nomor foto, misalnya: 2-7, 10-15, 18, 19-25')
         print('Ketik "semua" untuk memilih semua foto di part ini; 0 untuk kembali.')
@@ -521,7 +544,7 @@ def main():
         progress = Progress()
         if args.status:
             for review in selected:
-                key = f'part-{review["part"]}/{review["nomor"]:02d}'
+                key = record_key(review, progress)
                 entry = progress.items.get(key, {})
                 print(f'{key} | {review["username"]} | {entry.get("status", "belum_diproses")} | {entry.get("error") or ""}')
             return 0
