@@ -7,7 +7,7 @@ from zipfile import ZipFile, ZIP_DEFLATED
 from PIL import Image
 from playwright.sync_api import sync_playwright
 from playwright.sync_api import Error as PlaywrightError
-from project_paths import ROOT, IMAGE_ROOT, EXPORT_ROOT, PARTS, source_for_part, image_name
+from project_paths import IMAGE_ROOT, EXPORT_ROOT, PART_SUFFIX, discover_sources, image_name
 
 OUTPUT = IMAGE_ROOT
 
@@ -21,19 +21,14 @@ def main(argv=None):
         parser.error('--output harus disertai file HTML.')
     if args.file:
         source = args.file.resolve()
-        part = re.search(r'Part (\d+)$', source.stem)
+        part = PART_SUFFIX.search(source.name)
         default_folder = IMAGE_ROOT / f'Part {part[1]}' if part else EXPORT_ROOT / source.stem
         folder = (args.output or default_folder).resolve()
         jobs = [(source, folder)]
         archive = folder.parent / (folder.name + '.zip') if args.output else EXPORT_ROOT / (folder.name + '.zip')
         archive_root = folder
     else:
-        jobs = []
-        for part in PARTS:
-            try:
-                jobs.append((source_for_part(part), OUTPUT / f'Part {part}'))
-            except FileNotFoundError:
-                continue
+        jobs = [(source, OUTPUT / f'Part {part}') for part, source in discover_sources().items()]
         if not jobs:
             parser.error('Tidak ada HTML sumber di Gambar Ulasan PLN Mobile/HTML.')
         archive = EXPORT_ROOT / 'Gambar Ulasan PLN Mobile.zip'

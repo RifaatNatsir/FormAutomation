@@ -5,16 +5,12 @@ import json
 from pathlib import Path
 import re
 
-from project_paths import ROOT, PARTS, source_for_part, image_for_review
+from project_paths import ROOT, discover_sources, image_for_review
 
 
 def load_reviews(validate_images=True):
     reviews = []
-    for part in PARTS:
-        try:
-            source = source_for_part(part)
-        except FileNotFoundError:
-            continue
+    for part, source in discover_sources().items():
         cards = re.split(r'<div\s+class="(?:review-card|rc)"\s*>', source.read_text(encoding='utf-8'))[1:]
         if not cards:
             raise ValueError(f'Tidak ada kartu ulasan pada {source.name}')
@@ -48,7 +44,7 @@ def load_reviews(validate_images=True):
                 'nama_petugas': 'H. T.',
             })
     if not reviews:
-        raise FileNotFoundError('Tidak ada HTML sumber. Simpan file berakhiran Part 1.html, Part 2.html, atau Part 3.html di Gambar Ulasan PLN Mobile/HTML.')
+        raise FileNotFoundError('Tidak ada HTML sumber. Simpan file berakhiran Part N.html di Gambar Ulasan PLN Mobile/HTML.')
     assert len({item['capture_ulasan'] for item in reviews}) == len(reviews)
     return reviews
 

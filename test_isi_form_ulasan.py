@@ -18,18 +18,21 @@ class SourceDiscoveryTests(unittest.TestCase):
             source = root / 'Rekap Reviews PLN Mobile - 100 Ulasan Part 1.html'
             source.touch()
             with patch.object(project_paths, 'HTML_ROOT', root):
-                self.assertEqual(project_paths.source_for_part(1), source)
+                future = root / 'Rekap Part 25.HTML'
+                future.touch()
+                self.assertEqual(project_paths.discover_sources(), {1: source, 25: future})
                 (root / 'Other Part 1.html').touch()
                 with self.assertRaisesRegex(ValueError, 'lebih dari satu'):
-                    project_paths.source_for_part(1)
+                    project_paths.discover_sources()
 
     def test_new_markup_and_missing_other_parts(self):
         with tempfile.TemporaryDirectory() as d:
             source = Path(d) / 'sample.html'
             source.write_text('<div class="rc"><div class="nm">Nama Tes</div><span class="st">' + '\u2605'*5 + '</span><span class="dt">18/11/26</span><div class="tx">Baris satu\n baris dua</div></div>', encoding='utf-8')
-            with patch('siapkan_data_form.source_for_part', side_effect=[source, FileNotFoundError(), FileNotFoundError()]):
+            with patch('siapkan_data_form.discover_sources', return_value={5: source}):
                 reviews = load_reviews(validate_images=False)
             self.assertEqual(len(reviews), 1)
+            self.assertEqual(reviews[0]['part'], 5)
             self.assertEqual(reviews[0]['username'], 'Nama Tes')
             self.assertEqual(reviews[0]['ulasan'], 'Baris satu baris dua')
             self.assertEqual(reviews[0]['tanggal_ulasan'], '2026-11-18')
@@ -39,7 +42,7 @@ class BatchTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         # Batas fixture tetap 48 agar pengujian rentang tidak mengikuti ukuran data pengguna.
-        cls.reviews = [r for r in load_reviews() if r['nomor'] <= 48]
+        cls.reviews = [r for r in load_reviews(validate_images=False) if r['part'] <= 3 and r['nomor'] <= 48]
 
     def setUp(self):
         self.directory = tempfile.TemporaryDirectory()
@@ -168,16 +171,17 @@ class BatchTests(unittest.TestCase):
         self.assertIn('upload gagal', self.progress.items[queue[0]['id']]['error'])
 
     @patch('isi_form_ulasan.fill_review')
-    def test_missing_confirmation_stops_without_resending(self, fill):
+    def test_missing_confirmation_skips_review_and_continues_without_resending(self, fill):
         queue = self.prepare()
         browser = Mock()
-        browser.run.side_effect = [None, RuntimeError('konfirmasi timeout')]
+        browser.run.side_effect = [None, RuntimeError('konfirmasi timeout'), None, None]
         self.assertEqual(process_batch(browser, queue, self.progress, send=True), 1)
         self.assertEqual(self.progress.items[queue[0]['id']]['status'], 'perlu_cek')
-        self.assertEqual(self.progress.items[queue[1]['id']]['status'], 'disiapkan')
-        self.assertEqual(fill.call_count, 1)
-        self.assertEqual(process_batch(browser, queue, self.progress, send=True), 1)
-        self.assertEqual(fill.call_count, 1)
+        self.assertEqual(self.progress.items[queue[1]['id']]['status'], 'terkirim')
+        self.assertEqual(fill.call_count, 2)
+        self.assertEqual(process_batch(browser, queue, Progress(self.progress.path), send=True), 1)
+        self.assertEqual(fill.call_count, 2)
+        self.assertEqual(browser.run.call_count, 4)
 
     def test_interrupted_send_requires_manual_check(self):
         queue = self.prepare('1')
@@ -203,7 +207,7 @@ class BatchTests(unittest.TestCase):
         with patch('isi_form_ulasan.write_json', side_effect=fail_sent_save):
             self.assertEqual(process_batch(Mock(), queue, self.progress, send=True), 1)
         self.assertEqual(Progress(self.progress.path).items[queue[0]['id']]['status'], 'perlu_cek')
-        self.assertEqual(fill.call_count, 1)
+        self.assertEqual(fill.call_count, 2)
 
     @patch('isi_form_ulasan.fill_review')
     def test_interrupt_after_send_is_uncertain(self, fill):
@@ -230,8 +234,14 @@ class BatchTests(unittest.TestCase):
 
     @patch('builtins.print')
     def test_interactive_select_all_three_parts(self, output):
-        with patch('isi_form_ulasan.load_reviews', return_value=self.reviews), patch('builtins.input', side_effect=['4', 'semua']):
+        with patch('builtins.input', side_effect=['semua', 'semua']):
             self.assertEqual(len(choose_reviews(self.reviews, self.progress)), 144)
+
+    @patch('builtins.print')
+    def test_interactive_selects_new_part_by_its_number(self, output):
+        reviews = [dict(self.reviews[0], part=4), dict(self.reviews[0], part=25)]
+        with patch('builtins.input', side_effect=['4', 'semua']):
+            self.assertEqual(choose_reviews(reviews, self.progress), reviews[:1])
 
     @patch('builtins.print')
     def test_interactive_select_part_three(self, output):
@@ -328,7 +338,7 @@ class UploadTests(unittest.TestCase):
 
     def test_filename_only_is_not_attachment_confirmation(self):
         browser = Mock()
-        browser.run.return_value = {'snapshot': 'foto.png'}
+        browser.evaluate.return_value = False
         self.assertFalse(image_attached(browser, Path('foto.png')))
 
     @patch('isi_form_ulasan.upload_requests')
@@ -362,6 +372,7 @@ class UploadTests(unittest.TestCase):
     @patch('isi_form_ulasan.completed_upload', side_effect=[None, 'new-id'])
     def test_completed_drive_upload_is_inserted_before_success(self, completed, insert, sleep):
         browser = Mock()
+        browser.evaluate.side_effect = [False, False, False, True]
         snapshots = iter([
             {'snapshot': '- progressbar "Progres upload file": 50'},
             {'snapshot': '- button "Jelajah"'},
@@ -373,6 +384,16 @@ class UploadTests(unittest.TestCase):
         insert.assert_called_once_with(browser, Path('foto.png'), 'new-id')
         self.assertEqual(transfer['file_id'], 'new-id')
         self.assertFalse(any(call.args[0] == 'upload' for call in browser.run.call_args_list))
+
+    @patch('isi_form_ulasan.time.sleep')
+    @patch('isi_form_ulasan.insert_uploaded_file')
+    @patch('isi_form_ulasan.completed_upload', return_value='new-id')
+    def test_auto_attached_upload_skips_picker_after_drive_response(self, completed, insert, sleep):
+        browser = Mock()
+        browser.evaluate.side_effect = [False, True]
+        browser.run.return_value = {'snapshot': '- progressbar "Progres upload file": 100'}
+        wait_for_attachment(browser, Path('12 - Vera Maharani.png'), {'file_id': None, 'previous_ids': set()})
+        insert.assert_not_called()
 
     @patch('isi_form_ulasan.upload_requests', return_value=[])
     @patch('isi_form_ulasan.wait_for_attachment')

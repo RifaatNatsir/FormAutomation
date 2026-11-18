@@ -140,6 +140,8 @@ class Browser:
         self.command, self.session = command, session
 
     def run(self, *args):
+        if args[0] == 'wait' and '--timeout' not in args:
+            args += ('--timeout', '15000')
         result = subprocess.run(
             [self.command, '--session', self.session, '--json', *args],
             capture_output=True, text=True, encoding='utf-8', timeout=60,
@@ -190,12 +192,17 @@ class Browser:
         self.run('wait', '--fn', state + " === 'false'")
 
 
-def attachment_in_page(page, image):
-    return image.name in page and 'button "Buka file"' in page
-
-
 def image_attached(browser, image):
-    return attachment_in_page(browser.run('snapshot')['snapshot'], image)
+    filename = json.dumps(image.name)
+    return browser.evaluate(f"""(() => {{
+        const filename = {filename};
+        const attachments = document.querySelectorAll('form [aria-label="Buka file"], form [aria-label="Open file"]');
+        return Array.from(attachments).some(button => button.getClientRects().length && (
+            button.innerText.trim() === filename ||
+            [button, ...button.querySelectorAll('[title], [data-tooltip]')].some(el =>
+                el.getAttribute('title') === filename || el.getAttribute('data-tooltip') === filename)
+        ));
+    }})()""") is True
 
 
 def upload_requests(browser):
@@ -254,15 +261,24 @@ def wait_for_attachment(browser, image, transfer, timeout=UPLOAD_TIMEOUT):
     announced = False
     while time.monotonic() < deadline:
         browser.run('frame', 'main')
-        page = browser.run('snapshot')['snapshot']
-        if attachment_in_page(page, image):
+        if image_attached(browser, image):
             return
+        page = browser.run('snapshot')['snapshot']
         if not inserted:
             if not transfer['file_id']:
                 transfer['file_id'] = completed_upload(browser, image, transfer['previous_ids'])
-            if transfer['file_id']:
+            picker_ready = 'button "Jelajah"' in page or re.search(r'tab "Terbaru"[^\n]*\[selected', page)
+            if transfer['file_id'] and picker_ready and 'progressbar' not in page:
+                if image_attached(browser, image):
+                    return
                 print('  Unggahan selesai di Drive; memilih file lalu menekan Sisipkan.', flush=True)
-                insert_uploaded_file(browser, image, transfer['file_id'])
+                try:
+                    insert_uploaded_file(browser, image, transfer['file_id'])
+                except RuntimeError:
+                    browser.run('frame', 'main')
+                    if image_attached(browser, image):
+                        return
+                    raise
                 inserted = True
             elif 'progressbar' in page and not announced:
                 print('  Google Drive masih mengunggah; menunggu hingga selesai.', flush=True)
@@ -359,8 +375,9 @@ def process_batch(browser, queue, progress, send=False):
             print(f'[{index}/{len(queue)}] {key}: sudah terkirim, dilewati.', flush=True)
             continue
         if entry['status'] in {'mengirim', 'perlu_cek'}:
-            print(f'{key}: hasil pengiriman belum pasti. Periksa Google Forms sebelum melanjutkan.', flush=True)
-            return 1
+            print(f'[{index}/{len(queue)}] {key}: hasil pengiriman belum pasti, dilewati.', flush=True)
+            failed = True
+            continue
         print(f'[{index}/{len(queue)}] {key}: {review["username"]}', flush=True)
         progress.update(key, status='diproses', error=None, percobaan_unggah=0,
                         percobaan_proses=entry['percobaan_proses'] + 1)
@@ -390,8 +407,7 @@ def process_batch(browser, queue, progress, send=False):
             print(f'{key}: {progress.items[key]["status"]}: {error}', flush=True)
             failed = True
             if uncertain:
-                print('Batch dihentikan agar respons yang mungkin sudah terkirim tidak dikirim ulang.', flush=True)
-                return 1
+                print(f'{key}: perlu diperiksa di Google Forms. Lanjut ke foto berikutnya.', flush=True)
     return int(failed)
 
 
@@ -419,20 +435,20 @@ def show_reviews(reviews, progress):
 
 
 def choose_reviews(reviews, progress):
+    parts = sorted({r['part'] for r in reviews})
+    valid_parts = {str(part) for part in parts}
     while True:
         print('\nPILIH FOTO ULASAN')
-        print('  1. Part 1\n  2. Part 2\n  3. Part 3 (anonim/parafrase)\n  4. Semua part\n  0. Keluar')
-        part = input('Pilih part: ').strip()
+        for part in parts:
+            print(f'  {part}. Part {part}')
+        print('  semua. Semua part\n  0. Keluar')
+        part = input('Pilih part: ').strip().lower()
         if part == '0':
             return None
-        if part not in {'1', '2', '3', '4'}:
-            print('Masukkan 1, 2, 3, 4, atau 0.')
+        if part != 'semua' and part not in valid_parts:
+            print('Masukkan nomor part yang tersedia, semua, atau 0.')
             continue
-        part = 'semua' if part == '4' else part
         available = [r for r in reviews if part == 'semua' or r['part'] == int(part)]
-        if not available:
-            print(f'HTML Part {part} belum tersedia. Pilih part lain.')
-            continue
         show_reviews(available, progress)
         print('\nMasukkan nomor foto, misalnya: 2-7, 10-15, 18, 19-25')
         print('Ketik "semua" untuk memilih semua foto di part ini; 0 untuk kembali.')
@@ -527,7 +543,7 @@ def interactive():
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--part', choices=('1', '2', '3', 'semua'), default='1')
+    parser.add_argument('--part', default='1', help='Nomor part yang tersedia atau semua')
     parser.add_argument('--nomor', default='1', help='Contoh: "2-7, 10-15, 18, 19-25"; nomor berulang diproses satu kali')
     parser.add_argument('--session', default='pln-form')
     parser.add_argument('--interaktif', action='store_true', help='Buka menu pemilihan foto dan tindakan')

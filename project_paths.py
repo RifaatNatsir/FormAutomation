@@ -6,18 +6,23 @@ ROOT = Path(__file__).resolve().parent
 IMAGE_ROOT = ROOT / 'Gambar Ulasan PLN Mobile'
 HTML_ROOT = IMAGE_ROOT / 'HTML'
 EXPORT_ROOT = ROOT / 'Hasil Ekspor'
-PARTS = (1, 2, 3)
+PART_SUFFIX = re.compile(r'\bPart\s+([1-9][0-9]*)\.html$', re.I)
 
 
-def source_for_part(part):
+def discover_sources():
+    sources = {}
     for folder in (HTML_ROOT, IMAGE_ROOT, ROOT):
-        matches = [path for path in folder.glob('*.html')
-                   if re.search(rf'\bPart\s+{part}\.html$', path.name, re.I)]
-        if len(matches) > 1:
-            raise ValueError(f'Ada lebih dari satu HTML Part {part} di {folder}. Sisakan satu sumber aktif untuk part ini.')
-        if matches:
-            return matches[0]
-    raise FileNotFoundError(f'Simpan HTML sumber dengan nama berakhiran Part {part}.html di {HTML_ROOT}')
+        if not folder.is_dir():
+            continue
+        for path in folder.iterdir():
+            match = PART_SUFFIX.search(path.name)
+            if not match or not path.is_file():
+                continue
+            part = int(match[1])
+            if part in sources and sources[part].parent == folder:
+                raise ValueError(f'Ada lebih dari satu HTML Part {part} di {folder}. Sisakan satu sumber aktif untuk part ini.')
+            sources.setdefault(part, path)
+    return dict(sorted(sources.items()))
 
 
 def image_name(number, username):
